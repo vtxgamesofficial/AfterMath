@@ -9,21 +9,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#050505;
-  --black2:#0d0d0d;
-  --border:#1c1c1c;
-  --border2:#2c2c2c;
-  --white:#ffffff;
-  --off:#e8e8e8;
-  --grey:#777;
+  --black:#050505;--black2:#0d0d0d;--border:#1c1c1c;--border2:#2c2c2c;
+  --white:#ffffff;--off:#e8e8e8;--grey:#777;
 }
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:2px}
 ::-webkit-scrollbar-track{background:var(--black)}
 ::-webkit-scrollbar-thumb{background:var(--border2)}
-
-/* PAGE */
 .page{display:none}
 .page.active{display:block;animation:pgIn .35s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -33,7 +26,7 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(5,5,5,.97);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--white);background:none;border:none;cursor:pointer}
 .nav-desk{display:none;gap:0}
-.nav-d-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;padding:6px 16px;border-left:1px solid var(--border);transition:color .15s}
+.nav-d-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;padding:6px 14px;border-left:1px solid var(--border);transition:color .15s}
 .nav-d-btn:hover{color:var(--white)}
 .nav-right{display:flex;align-items:center;gap:8px}
 .menu-btn{background:none;border:none;cursor:pointer;color:var(--grey);padding:4px;transition:color .15s}
@@ -48,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .mob-link:hover{color:var(--white);background:#111}
 .mob-link:last-child{border-bottom:none}
 
-/* HERO — mobile: full bleed image with overlay text */
+/* HERO */
 .hero{margin-top:56px;position:relative;height:calc(100vh - 56px);min-height:480px;overflow:hidden;display:flex;flex-direction:column}
 .hero-img-bg{position:absolute;inset:0}
 .hero-img-bg img{width:100%;height:100%;object-fit:cover;opacity:.38;filter:grayscale(15%)}
@@ -60,21 +53,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .hero-h1 .dim{color:var(--grey);font-weight:400}
 .hero-sub{margin-top:14px;font-size:14px;font-weight:300;line-height:1.65;color:var(--grey);opacity:0;animation:riseUp .6s .28s forwards}
 .hero-acts{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:riseUp .6s .38s forwards}
-
-/* DESKTOP HERO overrides */
-@media(min-width:680px){
-  nav{height:64px;padding:0 32px}
-  .nav-logo{font-size:20px}
-  .nav-desk{display:flex}
-  .menu-btn{display:none!important}
-  .mob-menu{display:none!important}
-  .hero{margin-top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;flex-direction:unset}
-  .hero-img-bg{display:none}
-  .hero-content{border-right:1px solid var(--border);padding:56px 40px;justify-content:flex-end;height:100%}
-  .hero-right{display:flex!important}
-}
-
-/* DESKTOP HERO RIGHT */
 .hero-right{display:none;position:relative;overflow:hidden;background:var(--black2);flex-direction:column}
 .hero-right img{width:100%;height:100%;object-fit:cover;opacity:.85;filter:grayscale(10%);transition:transform 6s ease}
 .hero-right:hover img{transform:scale(1.03)}
@@ -99,25 +77,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* CATEGORY SPLIT */
-.cat-split{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.cat-split{display:grid;grid-template-columns:1fr 1fr}
 .cat-p{position:relative;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;padding:24px 20px;min-height:180px;background:var(--black2)}
-.cat-p:first-child{border-right:1px solid var(--border)}
+.cat-p:not(:last-child){border-right:1px solid var(--border)}
 .cat-bg{position:absolute;inset:0;background:linear-gradient(135deg,#111 0%,#060606 100%);transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
 .cat-p:hover .cat-bg{transform:scale(1.04)}
 .cat-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px)}
 .cat-ghost{position:absolute;top:8px;right:12px;font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;line-height:1;color:rgba(255,255,255,.04);pointer-events:none}
 .cat-content{position:relative;z-index:2}
 .cat-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:8px}
-.cat-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,7vw,72px);font-weight:900;line-height:.88;text-transform:uppercase}
+.cat-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,6vw,72px);font-weight:900;line-height:.88;text-transform:uppercase}
 .cat-arrow{margin-top:12px;display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);transition:color .2s,gap .2s}
 .cat-p:hover .cat-arrow{color:var(--white);gap:12px}
-@media(min-width:680px){
-  .cat-p{min-height:260px;padding:40px 36px}
-}
+/* 3-col on wider screens, 2-col wrap on mobile */
+.cat-split-3{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.cat-split-3 .cat-p:nth-child(3){grid-column:1/-1;border-right:none;border-top:1px solid var(--border)}
 
 /* SECTION */
 .sec{padding:44px 18px}
-@media(min-width:680px){.sec{padding:80px 40px}}
 .sec-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
 .sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,9vw,72px);font-weight:900;line-height:.9;text-transform:uppercase}
 .sec-title .dim{color:var(--grey);font-weight:400}
@@ -125,10 +102,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 
 /* PRODUCT GRID */
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
-@media(min-width:680px){.pgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}}
 .pcard{background:var(--black2);cursor:pointer;overflow:hidden;position:relative}
 .pcard-img{aspect-ratio:3/4;overflow:hidden;background:#111;position:relative}
-.pcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.25,.46,.45,.94);filter:grayscale(8%)}
+.pcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
 .pcard:hover .pcard-img img{transform:scale(1.05)}
 .pcard-ov{position:absolute;inset:0;background:rgba(0,0,0,.52);opacity:0;transition:opacity .22s;display:flex;align-items:center;justify-content:center}
 .pcard:hover .pcard-ov{opacity:1}
@@ -138,24 +114,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .pcard-info{padding:12px 14px 16px;border-top:1px solid var(--border)}
 .pcard-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:4px;line-height:1.1}
 .pcard-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900}
-@media(min-width:680px){
-  .pcard-name{font-size:16px}
-  .pcard-price{font-size:17px}
-  .pcard-info{padding:16px 18px 20px}
-}
+
+/* PROD HEADER */
+.prod-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.prod-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:4px}
+.sort-row{display:flex;gap:0;flex-shrink:0}
+.sort-btn{padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--grey);border:1px solid var(--border);border-right:none;cursor:pointer;transition:all .12s}
+.sort-btn:last-child{border-right:1px solid var(--border)}
+.sort-btn:hover,.sort-btn.on{background:var(--white);color:var(--black);border-color:var(--white)}
 
 /* PRODUCT DETAIL */
 .pd{margin-top:56px}
-@media(min-width:680px){
-  .pd{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px);margin-top:64px}
-}
 .pd-gal{width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--black2)}
-@media(min-width:680px){
-  .pd-gal{aspect-ratio:unset;position:sticky;top:64px;height:calc(100vh - 64px);border-right:1px solid var(--border)}
-}
-.pd-gal img{width:100%;height:100%;object-fit:cover;filter:grayscale(8%)}
+.pd-gal img{width:100%;height:100%;object-fit:cover}
 .pd-info{padding:24px 18px 56px}
-@media(min-width:680px){.pd-info{padding:56px 48px}}
 .breadcrumb{display:flex;gap:6px;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:22px;flex-wrap:wrap}
 .breadcrumb button{background:none;border:none;color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:color .15s;padding:0}
 .breadcrumb button:hover{color:var(--white)}
@@ -176,14 +148,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .pd-row span:first-child{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
 .pd-row span:last-child{color:var(--off)}
 
-/* PROD HEADER */
-.prod-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
-.prod-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:4px}
-.sort-row{display:flex;gap:0;flex-shrink:0}
-.sort-btn{padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--grey);border:1px solid var(--border);border-right:none;cursor:pointer;transition:all .12s}
-.sort-btn:last-child{border-right:1px solid var(--border)}
-.sort-btn:hover,.sort-btn.on{background:var(--white);color:var(--black);border-color:var(--white)}
-
 /* BACK */
 .back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:24px;transition:color .15s,gap .18s;padding:0}
 .back:hover{color:var(--white);gap:12px}
@@ -194,7 +158,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 
 /* LEGAL */
 .legal{margin-top:56px;padding:44px 18px 64px;max-width:720px}
-@media(min-width:680px){.legal{margin-top:64px;padding:80px 40px}}
 .legal h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,10vw,80px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:36px}
 .legal h1 span{color:var(--grey);font-weight:400}
 .legal-s{margin-bottom:36px}
@@ -207,14 +170,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 /* FOOTER */
 footer{border-top:1px solid var(--border);background:var(--black2)}
 .f-main{display:grid;grid-template-columns:1fr 1fr}
-@media(min-width:680px){.f-main{grid-template-columns:2fr 1fr 1fr 1fr}}
 .f-col{padding:32px 18px;border-bottom:1px solid var(--border)}
 .f-col:nth-child(odd){border-right:1px solid var(--border)}
-@media(min-width:680px){
-  .f-col{padding:52px 40px;border-bottom:none!important;border-right:1px solid var(--border)}
-  .f-col:last-child{border-right:none}
-  .f-brand-col{grid-column:1}
-}
 .f-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;display:block}
 .f-desc{font-size:13px;font-weight:300;line-height:1.65;color:var(--grey);margin-bottom:18px}
 .pays{display:flex;flex-wrap:wrap;gap:5px}
@@ -225,8 +182,33 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 .f-nav a,.f-nav button{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--grey);text-decoration:none;background:none;border:none;cursor:pointer;transition:color .15s;padding:0}
 .f-nav a:hover,.f-nav button:hover{color:var(--white)}
 .f-bot{border-top:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:5px}
-@media(min-width:680px){.f-bot{flex-direction:row;justify-content:space-between;padding:16px 40px}}
 .f-bot p{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+
+/* DESKTOP */
+@media(min-width:680px){
+  nav{height:64px;padding:0 32px}
+  .nav-logo{font-size:20px}
+  .nav-desk{display:flex!important}
+  .menu-btn{display:none!important}
+  .mob-menu{display:none!important}
+  .hero{margin-top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;flex-direction:unset}
+  .hero-img-bg{display:none}
+  .hero-content{border-right:1px solid var(--border);padding:56px 40px;justify-content:flex-end;height:100%}
+  .hero-right{display:flex!important}
+  .cat-p{min-height:260px;padding:40px 36px}
+  .cat-split-3{grid-template-columns:1fr 1fr 1fr}
+  .cat-split-3 .cat-p:nth-child(3){grid-column:auto;border-right:none;border-top:none}
+  .sec{padding:80px 40px}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .pd{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px);margin-top:64px}
+  .pd-gal{aspect-ratio:unset;position:sticky;top:64px;height:calc(100vh - 64px);border-right:1px solid var(--border)}
+  .pd-info{padding:56px 48px}
+  .f-main{grid-template-columns:2fr 1fr 1fr 1fr}
+  .f-col{border-bottom:none!important;border-right:1px solid var(--border);padding:52px 40px}
+  .f-col:last-child{border-right:none}
+  .f-bot{flex-direction:row;justify-content:space-between;padding:16px 40px}
+  .legal{margin-top:64px;padding:80px 40px}
+}
 </style>
 </head>
 <body>
@@ -236,10 +218,11 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 <!-- NAV -->
 <nav>
   <button class="nav-logo" onclick="go('home')">Aftermath</button>
-  <div class="nav-desk" style="display:none" id="nav-desk">
+  <div class="nav-desk" id="nav-desk">
     <button class="nav-d-btn" onclick="go('all')">All Products</button>
     <button class="nav-d-btn" onclick="go('womens')">Women</button>
     <button class="nav-d-btn" onclick="go('mens')">Men</button>
+    <button class="nav-d-btn" onclick="go('accessories')">Accessories</button>
   </div>
   <div class="nav-right">
     <button class="menu-btn" id="menu-toggle" onclick="toggleMenu()">
@@ -254,49 +237,47 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <button class="mob-link" onclick="go('all');closeMenu()">All Products</button>
   <button class="mob-link" onclick="go('womens');closeMenu()">Women's Clothing</button>
   <button class="mob-link" onclick="go('mens');closeMenu()">Men's Clothing</button>
+  <button class="mob-link" onclick="go('accessories');closeMenu()">Accessories</button>
   <button class="mob-link" onclick="go('privacy');closeMenu()">Privacy Policy</button>
   <button class="mob-link" onclick="go('terms');closeMenu()">Terms &amp; Conditions</button>
 </div>
 
-<!-- ══════════════ HOME ══════════════ -->
+<!-- ══ HOME ══ -->
 <div class="page active" id="page-home">
   <div class="hero">
-    <!-- Mobile bg image -->
     <div class="hero-img-bg">
-      <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="">
+      <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322945&s=1024" alt="">
     </div>
-    <!-- Left content -->
     <div class="hero-content">
       <p class="hero-eyebrow">Drop 001 — 2025</p>
       <h1 class="hero-h1">AFTER<br>MATH<br><span class="dim">STUDIO</span></h1>
-      <p class="hero-sub">Street-ready gear built for the culture. Limited runs, no restocks.</p>
+      <p class="hero-sub">Street-ready gear built for the culture. New drops, restocked for 2 years.</p>
       <div class="hero-acts">
         <button class="btn-w" onclick="go('all')">Shop Now</button>
         <button class="btn-b" onclick="go('all')">View All</button>
       </div>
     </div>
-    <!-- Desktop right panel -->
     <div class="hero-right">
       <div class="hero-right-top">
         <span>Drop 001</span>
-        <span class="drop-badge">Limited</span>
+        <span class="drop-badge">New Drop</span>
       </div>
-      <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie">
+      <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322945&s=1024" alt="Shoot Hoodie">
       <div class="hero-price-tag">
         <div class="hpt-name">Shoot Hoodie / Star Orbit</div>
-        <div class="hpt-price">$47.04</div>
+        <div class="hpt-price">$45.80</div>
       </div>
     </div>
   </div>
 
   <div class="mq">
     <div class="mq-inner">
-      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
-      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
+      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>New Season</span><span class="dot">✦</span><span>Restocked For 2 Years</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
+      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>New Season</span><span class="dot">✦</span><span>Restocked For 2 Years</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
     </div>
   </div>
 
-  <div class="cat-split">
+  <div class="cat-split-3" style="border-top:1px solid var(--border)">
     <div class="cat-p" onclick="go('womens')">
       <div class="cat-bg"></div><div class="cat-lines"></div><div class="cat-ghost">01</div>
       <div class="cat-content">
@@ -313,52 +294,26 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
         <div class="cat-arrow">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
     </div>
+    <div class="cat-p" onclick="go('accessories')">
+      <div class="cat-bg"></div><div class="cat-lines"></div><div class="cat-ghost">03</div>
+      <div class="cat-content">
+        <span class="cat-tag">Collection</span>
+        <div class="cat-title">Accessories</div>
+        <div class="cat-arrow">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
   </div>
 
   <div class="sec">
     <div class="sec-label">Featured</div>
     <div class="sec-title">Latest <span class="dim">Drops</span></div>
     <div class="w-line"></div>
-    <div class="pgrid">
-      <div class="pcard" onclick="openProduct(0)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie Star Orbit" loading="lazy">
-          <div class="pcard-badge">New Drop</div>
-          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
-          <div class="pcard-price">$47.04</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(1)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt Shooting Star" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$27.08</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(2)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt Shooting Star" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$16.75</div>
-        </div>
-      </div>
-    </div>
+    <div class="pgrid" id="home-grid"></div>
   </div>
   <div id="hf"></div>
 </div>
 
-<!-- ══════════════ ALL PRODUCTS ══════════════ -->
+<!-- ══ ALL PRODUCTS ══ -->
 <div class="page" id="page-all">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -374,46 +329,12 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
         <button class="sort-btn" onclick="setSrt(this)">Price ↓</button>
       </div>
     </div>
-    <div class="pgrid">
-      <div class="pcard" onclick="openProduct(0)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
-          <div class="pcard-badge">New Drop</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
-          <div class="pcard-price">$47.04</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(1)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$27.08</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(2)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$16.75</div>
-        </div>
-      </div>
-    </div>
+    <div class="pgrid" id="all-grid"></div>
   </div>
   <div id="af"></div>
 </div>
 
-<!-- ══════════════ WOMENS ══════════════ -->
+<!-- ══ WOMENS ══ -->
 <div class="page" id="page-womens">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -421,49 +342,15 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       <div>
         <div class="sec-label">Collection</div>
         <h1 class="sec-title">Women's <span class="dim">Clothing</span></h1>
-        <div class="prod-count" style="margin-top:4px">3 Items</div>
+        <div class="prod-count" style="margin-top:4px">2 Items</div>
       </div>
     </div>
-    <div class="pgrid">
-      <div class="pcard" onclick="openProduct(0)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
-          <div class="pcard-badge">New Drop</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
-          <div class="pcard-price">$47.04</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(1)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$27.08</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(2)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$16.75</div>
-        </div>
-      </div>
-    </div>
+    <div class="pgrid" id="womens-grid"></div>
   </div>
   <div id="wf"></div>
 </div>
 
-<!-- ══════════════ MENS ══════════════ -->
+<!-- ══ MENS ══ -->
 <div class="page" id="page-mens">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -471,49 +358,31 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       <div>
         <div class="sec-label">Collection</div>
         <h1 class="sec-title">Men's <span class="dim">Clothing</span></h1>
-        <div class="prod-count" style="margin-top:4px">3 Items</div>
+        <div class="prod-count" style="margin-top:4px">2 Items</div>
       </div>
     </div>
-    <div class="pgrid">
-      <div class="pcard" onclick="openProduct(0)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
-          <div class="pcard-badge">New Drop</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
-          <div class="pcard-price">$47.04</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(1)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$27.08</div>
-        </div>
-      </div>
-      <div class="pcard" onclick="openProduct(2)">
-        <div class="pcard-img">
-          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
-          <div class="pcard-badge">New</div>
-          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
-          <div class="pcard-price">$16.75</div>
-        </div>
-      </div>
-    </div>
+    <div class="pgrid" id="mens-grid"></div>
   </div>
   <div id="mf"></div>
 </div>
 
-<!-- ══════════════ PRODUCT DETAIL ══════════════ -->
+<!-- ══ ACCESSORIES ══ -->
+<div class="page" id="page-accessories">
+  <div class="sec" style="margin-top:56px">
+    <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
+    <div class="prod-hdr">
+      <div>
+        <div class="sec-label">Collection</div>
+        <h1 class="sec-title">Accessories</h1>
+        <div class="prod-count" style="margin-top:4px">1 Item</div>
+      </div>
+    </div>
+    <div class="pgrid" id="acc-grid"></div>
+  </div>
+  <div id="acf"></div>
+</div>
+
+<!-- ══ PRODUCT DETAIL ══ -->
 <div class="page" id="page-product">
   <div class="pd">
     <div class="pd-gal"><img id="pd-img" src="" alt=""></div>
@@ -529,14 +398,9 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       <div class="pd-sub" id="pd-sub"></div>
       <div class="pd-price" id="pd-price"></div>
       <p class="pd-desc" id="pd-desc"></p>
-      <div class="size-lbl">Select Size</div>
-      <div class="sizes">
-        <button class="sopt" onclick="pickSize(this)">XS</button>
-        <button class="sopt" onclick="pickSize(this)">S</button>
-        <button class="sopt sel" onclick="pickSize(this)">M</button>
-        <button class="sopt" onclick="pickSize(this)">L</button>
-        <button class="sopt" onclick="pickSize(this)">XL</button>
-        <button class="sopt" onclick="pickSize(this)">2XL</button>
+      <div id="pd-sizes-wrap">
+        <div class="size-lbl">Select Size</div>
+        <div class="sizes" id="pd-sizes"></div>
       </div>
       <button class="buy-btn" id="buy-btn" onclick="buyNow()">Buy Now!</button>
       <div class="pd-meta" id="pd-meta"></div>
@@ -545,7 +409,7 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <div id="pf"></div>
 </div>
 
-<!-- ══════════════ PRIVACY ══════════════ -->
+<!-- ══ PRIVACY ══ -->
 <div class="page" id="page-privacy">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -554,21 +418,21 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
     <div class="legal-s"><h2>2. How We Use It</h2><ul><li>Process and fulfil your orders</li><li>Send order updates and transactional emails</li><li>Respond to your enquiries</li><li>Send marketing with your consent</li><li>Improve our site and services</li><li>Meet legal obligations</li></ul></div>
     <div class="legal-s"><h2>3. Sharing</h2><p>We don't sell, trade or rent your data. We may share with trusted service providers helping run our business — under confidentiality agreements only.</p></div>
     <div class="legal-s"><h2>4. Cookies</h2><p>We use cookies to improve your experience. You can turn these off in your browser settings at any time.</p></div>
-    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at <span style="color:var(--white)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e192959485888ea180879584938c809589cf828ecf948a">[email&#160;protected]</a></span>.</p></div>
+    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at <span style="color:var(--white)">studio@aftermath.co.uk</span>.</p></div>
   </div>
   <div id="pvf"></div>
 </div>
 
-<!-- ══════════════ TERMS ══════════════ -->
+<!-- ══ TERMS ══ -->
 <div class="page" id="page-terms">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
     <h1>Terms &amp; <span>Conditions</span></h1>
     <div class="legal-s"><h2>1. Acceptance</h2><p>Using this site means you accept these terms. If you don't agree, don't use the site.</p></div>
-    <div class="legal-s"><h2>2. Products &amp; Pricing</h2><p>All prices in USD. We can change prices or discontinue products at any time. Orders subject to availability.</p></div>
+    <div class="legal-s"><h2>2. Products &amp; Pricing</h2><p>All prices in USD. We can change prices at any time. Orders subject to availability.</p></div>
     <div class="legal-s"><h2>3. Orders &amp; Payment</h2><ul><li>Orders confirmed only when payment clears</li><li>We accept Visa, Mastercard, Amex, Apple Pay, Google Pay</li><li>All payments processed via secure encrypted connection</li><li>We reserve the right to cancel any order</li></ul></div>
     <div class="legal-s"><h2>4. Shipping</h2><p>We ship worldwide. Delivery times are estimates only. Customs duties are your responsibility. Risk passes to you on delivery.</p></div>
-    <div class="legal-s"><h2>5. Returns</h2><p>Returns accepted within 30 days for unworn, unwashed items with tags. Limited edition pieces are final sale.</p></div>
+    <div class="legal-s"><h2>5. Returns</h2><p>Returns accepted within 30 days for unworn, unwashed items with tags. Contact us to start a return.</p></div>
     <div class="legal-s"><h2>6. Governing Law</h2><p>These terms are governed by the laws of England and Wales.</p></div>
   </div>
   <div id="tf"></div>
@@ -578,9 +442,9 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 <template id="ftpl">
   <footer>
     <div class="f-main">
-      <div class="f-col f-brand-col" style="grid-column:1/-1">
+      <div class="f-col" style="grid-column:1/-1">
         <span class="f-logo">Aftermath Studio</span>
-        <p class="f-desc">Street-ready gear built for the culture. Limited runs, no restocks.</p>
+        <p class="f-desc">Street-ready gear built for the culture. New drops, restocked for 2 years.</p>
         <div class="pays"><div class="pay">Visa</div><div class="pay">Mastercard</div><div class="pay">Amex</div><div class="pay">Apple Pay</div><div class="pay">Google Pay</div></div>
       </div>
       <div class="f-col">
@@ -589,6 +453,7 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
           <li><button onclick="go('all')">All Products</button></li>
           <li><button onclick="go('womens')">Women</button></li>
           <li><button onclick="go('mens')">Men</button></li>
+          <li><button onclick="go('accessories')">Accessories</button></li>
         </ul>
       </div>
       <div class="f-col">
@@ -601,136 +466,145 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
     </div>
     <div class="f-bot">
       <p>© 2025 Aftermath Studio. All rights reserved.</p>
-      <p>Limited edition. No restocks. Ever.</p>
+      <p>Restocked for 2 years from launch.</p>
     </div>
   </footer>
 </template>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── PRODUCTS DATA ── */
+<script>
+/* ── PRODUCTS ── */
 const PRODUCTS = [
   {
-    name: 'Shoot Hoodie',
+    id: 'cap',
+    name: 'Shoot Cap',
     sub: 'Star Orbit',
-    price: '$47.04',
-    img: 'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024',
-    imgStyle: '',
-    url: 'https://aftermath.vtxgames.co.uk/product/27222349/shoot-hoodie-star-orbit',
-    desc: 'Heavyweight pullover hoodie. Oversized fit, screen-printed Star Orbit graphic on 450gsm fleece. Ribbed cuffs, hem and kangaroo pocket. Drop 001 — strictly limited, no restock.',
-    meta: [
-      ['Type','Pullover Hoodie'],
-      ['Material','450gsm Fleece'],
-      ['Fit','Oversized'],
-      ['Print','Screen Printed'],
-      ['Edition','Limited — No Restock'],
-      ['Ships','Worldwide · 5–10 Days']
-    ]
+    price: '$16.21',
+    img: 'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992281&s=1024',
+    url: 'https://aftermath-studio.printify.me/product/27225852/shoot-cap-star-orbit',
+    desc: 'Structured cap with embroidered Star Orbit graphic. Adjustable strap, one size fits most. Drop 001 — restocked for 2 years from launch.',
+    sizes: ['S/M','L/XL','One Size'],
+    defaultSize: 2,
+    meta: [['Type','Structured Cap'],['Style','Embroidered'],['Fit','Adjustable'],['Restock','2 Years From Launch'],['Ships','Worldwide · 5–10 Days']],
+    categories: ['accessories']
   },
   {
-    name: 'Shoot T-Shirt',
-    sub: 'Shooting Star',
-    price: '$27.08',
-    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048',
-    imgStyle: '',
-    url: 'https://aftermath.vtxgames.co.uk/product/shoot-t-shirt-shooting-star',
-    desc: 'Classic fit tee. Screen-printed Shooting Star graphic on 100% premium cotton. Lightweight, breathable, pre-shrunk. Drop 001 — strictly limited, no restock.',
-    meta: [
-      ['Type','T-Shirt'],
-      ['Material','100% Premium Cotton'],
-      ['Fit','Classic'],
-      ['Print','Screen Printed'],
-      ['Edition','Limited — No Restock'],
-      ['Ships','Worldwide · 5–10 Days']
-    ]
-  },
-  {
+    id: 'tee',
     name: 'Shoot T-Shirt',
     sub: 'Shooting Star',
     price: '$16.75',
-    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048',
-    imgStyle: '',
-    url: 'https://aftermath.vtxgames.co.uk/product/shoot-t-shirt-shooting-star',
-    desc: 'Classic fit tee. Screen-printed Shooting Star graphic on 100% premium cotton. Lightweight, breathable, pre-shrunk. Drop 001 — strictly limited, no restock.',
-    meta: [
-      ['Type','T-Shirt'],
-      ['Material','100% Premium Cotton'],
-      ['Fit','Classic'],
-      ['Print','Screen Printed'],
-      ['Edition','Limited — No Restock'],
-      ['Ships','Worldwide · 5–10 Days']
-    ]
+    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198233&s=1024',
+    url: 'https://aftermath-studio.printify.me/product/27225562/shoot-tshirt-shooting-star',
+    desc: 'Classic fit tee. Screen-printed Shooting Star graphic on 100% premium cotton. Lightweight, breathable, pre-shrunk. Drop 001 — restocked for 2 years from launch.',
+    sizes: ['XS','S','M','L','XL','2XL'],
+    defaultSize: 2,
+    meta: [['Type','T-Shirt'],['Material','100% Premium Cotton'],['Fit','Classic'],['Print','Screen Printed'],['Restock','2 Years From Launch'],['Ships','Worldwide · 5–10 Days']],
+    categories: ['womens','mens']
+  },
+  {
+    id: 'hoodie',
+    name: 'Shoot Hoodie',
+    sub: 'Star Orbit',
+    price: '$45.80',
+    img: 'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322945&s=1024',
+    url: 'https://aftermath-studio.printify.me/product/27222349/shoot-hoodie-star-orbit',
+    desc: 'Heavyweight pullover hoodie. Oversized fit, screen-printed Star Orbit graphic on 450gsm fleece. Ribbed cuffs, hem and kangaroo pocket. Drop 001 — restocked for 2 years from launch.',
+    sizes: ['XS','S','M','L','XL','2XL'],
+    defaultSize: 2,
+    meta: [['Type','Pullover Hoodie'],['Material','450gsm Fleece'],['Fit','Oversized'],['Print','Screen Printed'],['Restock','2 Years From Launch'],['Ships','Worldwide · 5–10 Days']],
+    categories: ['womens','mens']
   }
 ];
 
 let currentUrl = '';
 
+/* ── RENDER CARD ── */
+function card(p, idx) {
+  return `<div class="pcard" onclick="openProduct(${idx})">
+    <div class="pcard-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="pcard-badge">New Drop</div>
+      <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+    </div>
+    <div class="pcard-info">
+      <div class="pcard-name">${p.name} / ${p.sub}</div>
+      <div class="pcard-price">${p.price}</div>
+    </div>
+  </div>`;
+}
+
+/* ── RENDER ALL GRIDS ── */
+function renderGrids() {
+  const all = PRODUCTS.map((p,i) => card(p,i)).join('');
+  const womens = PRODUCTS.filter(p=>p.categories.includes('womens')).map(p=>card(p,PRODUCTS.indexOf(p))).join('');
+  const mens = PRODUCTS.filter(p=>p.categories.includes('mens')).map(p=>card(p,PRODUCTS.indexOf(p))).join('');
+  const acc = PRODUCTS.filter(p=>p.categories.includes('accessories')).map(p=>card(p,PRODUCTS.indexOf(p))).join('');
+  document.getElementById('home-grid').innerHTML = all;
+  document.getElementById('all-grid').innerHTML = all;
+  document.getElementById('womens-grid').innerHTML = womens;
+  document.getElementById('mens-grid').innerHTML = mens;
+  document.getElementById('acc-grid').innerHTML = acc;
+}
+
 /* ── OPEN PRODUCT ── */
 function openProduct(idx) {
   const p = PRODUCTS[idx];
   document.getElementById('pd-img').src = p.img;
-  document.getElementById('pd-img').style.cssText = p.imgStyle;
   document.getElementById('pd-name').textContent = p.name;
   document.getElementById('pd-sub').textContent = p.sub;
   document.getElementById('pd-price').textContent = p.price;
   document.getElementById('pd-bread').textContent = p.name;
   document.getElementById('pd-desc').textContent = p.desc;
-  document.getElementById('pd-meta').innerHTML = p.meta.map(r =>
-    `<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`
+  document.getElementById('pd-meta').innerHTML = p.meta.map(r=>`<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+  // sizes
+  document.getElementById('pd-sizes').innerHTML = p.sizes.map((s,i)=>
+    `<button class="sopt${i===p.defaultSize?' sel':''}" onclick="pickSize(this)">${s}</button>`
   ).join('');
   currentUrl = p.url;
-  // reset sizes
-  document.querySelectorAll('.sopt').forEach((s,i) => s.classList.toggle('sel', i===2));
   go('product');
 }
 
 /* ── ROUTER ── */
 const FT = document.getElementById('ftpl');
-const slots = {home:'hf',all:'af',womens:'wf',mens:'mf',product:'pf',privacy:'pvf',terms:'tf'};
+const slots = {home:'hf',all:'af',womens:'wf',mens:'mf',accessories:'acf',product:'pf',privacy:'pvf',terms:'tf'};
 function go(pg) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + pg).classList.add('active');
-  window.scrollTo({top:0, behavior:'instant'});
-  if (slots[pg]) {
-    const s = document.getElementById(slots[pg]);
-    if (s && !s.hasChildNodes()) s.appendChild(FT.content.cloneNode(true));
-  }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  if(slots[pg]){const s=document.getElementById(slots[pg]);if(s&&!s.hasChildNodes())s.appendChild(FT.content.cloneNode(true));}
   closeMenu();
-  // show/hide desktop nav
-  const desk = document.getElementById('nav-desk');
-  if(desk) desk.style.display = window.innerWidth >= 680 ? 'flex' : 'none';
+  checkNav();
 }
 
 /* ── MOBILE MENU ── */
-function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
-function closeMenu() { document.getElementById('mob-menu').classList.remove('open'); }
+function toggleMenu(){document.getElementById('mob-menu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mob-menu').classList.remove('open')}
 
-/* ── RESPONSIVE NAV ── */
-function checkNav() {
-  const desk = document.getElementById('nav-desk');
-  const menuBtn = document.getElementById('menu-toggle');
-  if (!desk) return;
-  if (window.innerWidth >= 680) {
-    desk.style.display = 'flex';
-    menuBtn.style.display = 'none';
-    closeMenu();
-  } else {
-    desk.style.display = 'none';
-    menuBtn.style.display = 'block';
-  }
+/* ── NAV ── */
+function checkNav(){
+  const desk=document.getElementById('nav-desk');
+  const mb=document.getElementById('menu-toggle');
+  if(!desk)return;
+  if(window.innerWidth>=680){desk.style.display='flex';mb.style.display='none';closeMenu();}
+  else{desk.style.display='none';mb.style.display='block';}
 }
-window.addEventListener('resize', checkNav);
+window.addEventListener('resize',checkNav);
 
 /* ── BUY NOW ── */
-function buyNow() {
-  showToast('Redirecting…');
-  setTimeout(() => window.open(currentUrl, '_blank'), 600);
-}
+function buyNow(){showToast('Redirecting…');setTimeout(()=>window.open(currentUrl,'_blank'),600)}
 
 /* ── SIZE ── */
-function pickSize(b) { document.querySelectorAll('.sopt').forEach(s => s.classList.remove('sel')); b.classList.add('sel'); }
+function pickSize(b){document.querySelectorAll('.sopt').forEach(s=>s.classList.remove('sel'));b.classList.add('sel')}
 
 /* ── SORT ── */
-function setSrt(b) { document.querySelectorAll('.sort-btn').forEach(s => s.classList.remove('on')); b.classList.add('on'); }
+function setSrt(b){document.querySelectorAll('.sort-btn').forEach(s=>s.classList.remove('on'));b.classList.add('on')}
 
 /* ── TOAST ── */
-function showToast(
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+
+/* ── INIT ── */
+renderGrids();
+go('home');
+checkNav();
+</script>
+</body>
+</html>
