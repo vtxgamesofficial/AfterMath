@@ -15,319 +15,218 @@
   --border2:#2c2c2c;
   --white:#ffffff;
   --off:#e8e8e8;
-  --grey:#777777;
-  --grey2:#333;
+  --grey:#777;
 }
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
-
-/* ── SCROLLBAR ── */
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:2px}
 ::-webkit-scrollbar-track{background:var(--black)}
 ::-webkit-scrollbar-thumb{background:var(--border2)}
 
-/* ── PAGE SYSTEM ── */
+/* PAGE */
 .page{display:none}
 .page.active{display:block;animation:pgIn .35s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes riseUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  height:56px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;
-  background:rgba(5,5,5,.97);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:18px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--white);background:none;border:none;cursor:pointer;flex-shrink:0;
-}
-.nav-mid{display:flex;gap:0;overflow:hidden}
-.nav-btn{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--grey);background:none;border:none;cursor:pointer;
-  padding:6px 14px;
-  border-left:1px solid var(--border);
-  transition:color .15s;white-space:nowrap;
-}
-.nav-btn:hover{color:var(--white)}
-.nav-menu-btn{
-  display:none;
-  background:none;border:none;cursor:pointer;
-  color:var(--grey);padding:4px;
-  transition:color .15s;
-}
-.nav-menu-btn:hover{color:var(--white)}
-.nav-shop-btn{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--white);background:var(--white);color:var(--black);
-  border:none;cursor:pointer;
-  padding:8px 16px;
-  margin-left:8px;
-  transition:background .15s;flex-shrink:0;
-}
-.nav-shop-btn:hover{background:var(--off)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(5,5,5,.97);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--white);background:none;border:none;cursor:pointer}
+.nav-desk{display:none;gap:0}
+.nav-d-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;padding:6px 16px;border-left:1px solid var(--border);transition:color .15s}
+.nav-d-btn:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.menu-btn{background:none;border:none;cursor:pointer;color:var(--grey);padding:4px;transition:color .15s}
+.menu-btn:hover{color:var(--white)}
+.nav-shop{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:var(--white);color:var(--black);border:none;cursor:pointer;padding:8px 16px;transition:background .15s}
+.nav-shop:hover{background:var(--off)}
 
-/* ── MOBILE MENU ── */
-.mob-menu{
-  display:none;
-  position:fixed;top:56px;left:0;right:0;z-index:490;
-  background:var(--black2);border-bottom:1px solid var(--border);
-  flex-direction:column;
-}
+/* MOBILE MENU */
+.mob-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:490;background:var(--black2);border-bottom:1px solid var(--border);flex-direction:column}
 .mob-menu.open{display:flex}
-.mob-link{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--grey);background:none;border:none;cursor:pointer;
-  padding:18px 24px;
-  border-bottom:1px solid var(--border);
-  text-align:left;transition:color .15s,background .15s;
-}
+.mob-link{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;padding:18px 22px;border-bottom:1px solid var(--border);text-align:left;transition:color .15s,background .15s}
 .mob-link:hover{color:var(--white);background:#111}
 .mob-link:last-child{border-bottom:none}
 
-/* ── HERO ── */
-.hero{
-  margin-top:56px;
-  position:relative;overflow:hidden;
-  height:calc(100vh - 56px);
-  min-height:500px;
-  display:flex;flex-direction:column;
-}
-.hero-img-wrap{
-  position:absolute;inset:0;
-}
-.hero-img-wrap img{
-  width:100%;height:100%;object-fit:cover;
-  opacity:.4;filter:grayscale(20%);
-}
-.hero-img-wrap::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top, var(--black) 0%, rgba(5,5,5,.6) 50%, transparent 100%);
-}
-.hero-content{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  height:100%;padding:32px 20px;
-}
-.hero-tag{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--grey);margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-  opacity:0;animation:riseUp .6s .05s forwards;
-}
-.hero-tag::before{content:'';width:20px;height:1px;background:var(--grey);flex-shrink:0}
-.hero-h1{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(72px,18vw,200px);font-weight:900;
-  line-height:.85;text-transform:uppercase;letter-spacing:-.01em;
-  opacity:0;animation:riseUp .7s .15s forwards;
-}
-.hero-h1 span{color:var(--grey);font-weight:400}
-.hero-sub{
-  margin-top:16px;font-size:15px;font-weight:300;
-  line-height:1.65;color:var(--grey);
-  max-width:500px;
-  opacity:0;animation:riseUp .6s .28s forwards;
-}
-.hero-acts{
-  margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;
-  opacity:0;animation:riseUp .6s .38s forwards;
+/* HERO — mobile: full bleed image with overlay text */
+.hero{margin-top:56px;position:relative;height:calc(100vh - 56px);min-height:480px;overflow:hidden;display:flex;flex-direction:column}
+.hero-img-bg{position:absolute;inset:0}
+.hero-img-bg img{width:100%;height:100%;object-fit:cover;opacity:.38;filter:grayscale(15%)}
+.hero-img-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,rgba(5,5,5,.5) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 18px 36px;height:100%}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;display:flex;align-items:center;gap:10px;opacity:0;animation:riseUp .6s .05s forwards}
+.hero-eyebrow::before{content:'';width:18px;height:1px;background:var(--grey);flex-shrink:0}
+.hero-h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(68px,20vw,160px);font-weight:900;line-height:.85;text-transform:uppercase;opacity:0;animation:riseUp .7s .15s forwards}
+.hero-h1 .dim{color:var(--grey);font-weight:400}
+.hero-sub{margin-top:14px;font-size:14px;font-weight:300;line-height:1.65;color:var(--grey);opacity:0;animation:riseUp .6s .28s forwards}
+.hero-acts{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:riseUp .6s .38s forwards}
+
+/* DESKTOP HERO overrides */
+@media(min-width:680px){
+  nav{height:64px;padding:0 32px}
+  .nav-logo{font-size:20px}
+  .nav-desk{display:flex}
+  .menu-btn{display:none!important}
+  .mob-menu{display:none!important}
+  .hero{margin-top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;flex-direction:unset}
+  .hero-img-bg{display:none}
+  .hero-content{border-right:1px solid var(--border);padding:56px 40px;justify-content:flex-end;height:100%}
+  .hero-right{display:flex!important}
 }
 
-/* ── BUTTONS ── */
-.btn-w{
-  padding:14px 28px;background:var(--white);color:var(--black);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
-  border:none;cursor:pointer;
-  transition:background .15s;
-  display:inline-block;text-decoration:none;
-  flex-shrink:0;
-}
+/* DESKTOP HERO RIGHT */
+.hero-right{display:none;position:relative;overflow:hidden;background:var(--black2);flex-direction:column}
+.hero-right img{width:100%;height:100%;object-fit:cover;opacity:.85;filter:grayscale(10%);transition:transform 6s ease}
+.hero-right:hover img{transform:scale(1.03)}
+.hero-right-top{position:absolute;top:0;left:0;right:0;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(5,5,5,.65),transparent);z-index:2}
+.hero-right-top span{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--grey)}
+.drop-badge{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:var(--white);color:var(--black);padding:5px 12px}
+.hero-price-tag{position:absolute;bottom:24px;left:24px;background:var(--black);border:1px solid var(--border2);padding:12px 18px;z-index:2}
+.hpt-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--off);margin-bottom:3px}
+.hpt-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900}
+
+/* BUTTONS */
+.btn-w{padding:14px 28px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:background .15s;flex-shrink:0}
 .btn-w:hover{background:var(--off)}
-.btn-b{
-  padding:13px 24px;background:transparent;color:var(--white);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
-  border:1px solid var(--border2);cursor:pointer;
-  transition:border-color .15s;
-  display:inline-block;text-decoration:none;
-  flex-shrink:0;
-}
+.btn-b{padding:13px 24px;background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--border2);cursor:pointer;transition:border-color .15s;flex-shrink:0}
 .btn-b:hover{border-color:var(--white)}
 
-/* ── MARQUEE ── */
+/* MARQUEE */
 .mq{overflow:hidden;padding:12px 0;background:var(--white)}
-.mq-inner{display:inline-flex;white-space:nowrap;animation:mq 20s linear infinite}
-.mq-inner span{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--black);padding:0 16px;
-}
-.mq-inner span.dot{color:#888;padding:0 6px}
+.mq-inner{display:inline-flex;white-space:nowrap;animation:mq 22s linear infinite}
+.mq-inner span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--black);padding:0 16px}
+.mq-inner .dot{color:#aaa;padding:0 6px}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── CAT SPLIT ── */
-.cat-split{display:grid;grid-template-columns:1fr 1fr}
-.cat-p{
-  position:relative;overflow:hidden;cursor:pointer;
-  display:flex;align-items:flex-end;
-  padding:28px 24px;
-  background:var(--black2);
-  min-height:220px;
-  border-bottom:1px solid var(--border);
-}
+/* CATEGORY SPLIT */
+.cat-split{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.cat-p{position:relative;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;padding:24px 20px;min-height:180px;background:var(--black2)}
 .cat-p:first-child{border-right:1px solid var(--border)}
 .cat-bg{position:absolute;inset:0;background:linear-gradient(135deg,#111 0%,#060606 100%);transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
 .cat-p:hover .cat-bg{transform:scale(1.04)}
 .cat-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px)}
-.cat-ghost{position:absolute;top:12px;right:14px;font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:900;line-height:1;color:rgba(255,255,255,.04);pointer-events:none}
+.cat-ghost{position:absolute;top:8px;right:12px;font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;line-height:1;color:rgba(255,255,255,.04);pointer-events:none}
 .cat-content{position:relative;z-index:2}
-.cat-label-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:8px}
-.cat-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:900;line-height:.88;text-transform:uppercase}
-.cat-arrow{margin-top:14px;display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);transition:color .2s,gap .2s}
+.cat-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:8px}
+.cat-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,7vw,72px);font-weight:900;line-height:.88;text-transform:uppercase}
+.cat-arrow{margin-top:12px;display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);transition:color .2s,gap .2s}
 .cat-p:hover .cat-arrow{color:var(--white);gap:12px}
+@media(min-width:680px){
+  .cat-p{min-height:260px;padding:40px 36px}
+}
 
-/* ── SECTION ── */
-.sec{padding:48px 20px}
+/* SECTION */
+.sec{padding:44px 18px}
+@media(min-width:680px){.sec{padding:80px 40px}}
 .sec-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:.9;text-transform:uppercase}
-.sec-title span{color:var(--grey);font-weight:400}
-.white-line{width:28px;height:2px;background:var(--white);margin:16px 0}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,9vw,72px);font-weight:900;line-height:.9;text-transform:uppercase}
+.sec-title .dim{color:var(--grey);font-weight:400}
+.w-line{width:28px;height:2px;background:var(--white);margin:16px 0}
 
-/* ── PROD HEADER ── */
-.prod-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
-.prod-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:6px}
-.sort-row{display:flex;gap:0;flex-shrink:0}
-.sort-btn{padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--grey);border:1px solid var(--border);border-right:none;cursor:pointer;transition:all .12s}
-.sort-btn:last-child{border-right:1px solid var(--border)}
-.sort-btn:hover,.sort-btn.on{background:var(--white);color:var(--black);border-color:var(--white)}
-
-/* ── PRODUCT GRID ── */
-.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+/* PRODUCT GRID */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+@media(min-width:680px){.pgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}}
 .pcard{background:var(--black2);cursor:pointer;overflow:hidden;position:relative}
 .pcard-img{aspect-ratio:3/4;overflow:hidden;background:#111;position:relative}
 .pcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.25,.46,.45,.94);filter:grayscale(8%)}
 .pcard:hover .pcard-img img{transform:scale(1.05)}
-.pcard-ov{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .22s;display:flex;align-items:center;justify-content:center}
+.pcard-ov{position:absolute;inset:0;background:rgba(0,0,0,.52);opacity:0;transition:opacity .22s;display:flex;align-items:center;justify-content:center}
 .pcard:hover .pcard-ov{opacity:1}
-.pcard-qv{padding:12px 22px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transform:translateY(8px);opacity:0;transition:transform .22s,opacity .22s}
+.pcard-qv{padding:11px 20px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transform:translateY(8px);opacity:0;transition:transform .22s,opacity .22s}
 .pcard:hover .pcard-qv{transform:translateY(0);opacity:1}
-.pcard-badge{position:absolute;top:0;left:0;padding:5px 12px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
-.pcard-info{padding:14px 16px 18px;border-top:1px solid var(--border)}
-.pcard-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:5px;line-height:1.1}
-.pcard-price{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900}
+.pcard-badge{position:absolute;top:0;left:0;padding:5px 10px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.pcard-info{padding:12px 14px 16px;border-top:1px solid var(--border)}
+.pcard-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:4px;line-height:1.1}
+.pcard-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900}
+@media(min-width:680px){
+  .pcard-name{font-size:16px}
+  .pcard-price{font-size:17px}
+  .pcard-info{padding:16px 18px 20px}
+}
 
-/* ── LOADING STATE ── */
-.loading-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.loading-card{background:var(--black2);aspect-ratio:3/4;animation:shimmer 1.4s ease-in-out infinite}
-.loading-card-info{background:var(--black2);height:70px;border-top:1px solid var(--border);animation:shimmer 1.4s ease-in-out infinite}
-@keyframes shimmer{0%,100%{opacity:.4}50%{opacity:.7}}
-
-/* ── PRODUCT DETAIL ── */
+/* PRODUCT DETAIL */
 .pd{margin-top:56px}
-.pd-gal{width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--black2);border-bottom:1px solid var(--border)}
+@media(min-width:680px){
+  .pd{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px);margin-top:64px}
+}
+.pd-gal{width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--black2)}
+@media(min-width:680px){
+  .pd-gal{aspect-ratio:unset;position:sticky;top:64px;height:calc(100vh - 64px);border-right:1px solid var(--border)}
+}
 .pd-gal img{width:100%;height:100%;object-fit:cover;filter:grayscale(8%)}
-.pd-info{padding:28px 20px 48px}
-.breadcrumb{display:flex;gap:6px;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:24px;flex-wrap:wrap}
+.pd-info{padding:24px 18px 56px}
+@media(min-width:680px){.pd-info{padding:56px 48px}}
+.breadcrumb{display:flex;gap:6px;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:22px;flex-wrap:wrap}
 .breadcrumb button{background:none;border:none;color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:color .15s;padding:0}
 .breadcrumb button:hover{color:var(--white)}
-.pd-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,10vw,72px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:6px}
-.pd-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,6vw,36px);font-weight:400;color:var(--grey);text-transform:uppercase;letter-spacing:.04em;margin-bottom:20px}
-.pd-price{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-.pd-desc{font-size:14px;font-weight:300;line-height:1.75;color:var(--grey);margin-bottom:28px}
+.pd-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(38px,10vw,68px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:6px}
+.pd-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(20px,6vw,34px);font-weight:400;color:var(--grey);text-transform:uppercase;letter-spacing:.04em;margin-bottom:18px}
+.pd-price{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.pd-desc{font-size:14px;font-weight:300;line-height:1.75;color:var(--grey);margin-bottom:26px}
 .size-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
-.sizes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
 .sopt{width:48px;height:48px;border:1px solid var(--border2);background:transparent;color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .12s;display:flex;align-items:center;justify-content:center}
 .sopt:hover{border-color:var(--white);color:var(--white)}
 .sopt.sel{background:var(--white);color:var(--black);border-color:var(--white)}
 .buy-btn{width:100%;padding:18px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:background .15s,transform .1s;margin-bottom:10px}
 .buy-btn:hover{background:var(--off);transform:translateY(-1px)}
-.buy-btn:active{transform:translateY(0)}
-.pd-meta{margin-top:28px;border-top:1px solid var(--border);padding-top:20px}
+.buy-btn:active{transform:none}
+.pd-meta{margin-top:24px;border-top:1px solid var(--border);padding-top:18px}
 .pd-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);font-size:13px}
 .pd-row span:first-child{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
 .pd-row span:last-child{color:var(--off)}
 
-/* ── TOAST ── */
+/* PROD HEADER */
+.prod-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.prod-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:4px}
+.sort-row{display:flex;gap:0;flex-shrink:0}
+.sort-btn{padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--grey);border:1px solid var(--border);border-right:none;cursor:pointer;transition:all .12s}
+.sort-btn:last-child{border-right:1px solid var(--border)}
+.sort-btn:hover,.sort-btn.on{background:var(--white);color:var(--black);border-color:var(--white)}
+
+/* BACK */
+.back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:24px;transition:color .15s,gap .18s;padding:0}
+.back:hover{color:var(--white);gap:12px}
+
+/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--white);color:var(--black);padding:12px 24px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;opacity:0;transition:opacity .22s,transform .22s;z-index:800;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ── LEGAL ── */
-.legal{margin-top:56px;padding:48px 20px 64px;max-width:720px}
-.legal h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,10vw,80px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:40px}
+/* LEGAL */
+.legal{margin-top:56px;padding:44px 18px 64px;max-width:720px}
+@media(min-width:680px){.legal{margin-top:64px;padding:80px 40px}}
+.legal h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,10vw,80px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:36px}
 .legal h1 span{color:var(--grey);font-weight:400}
-.legal-s{margin-bottom:40px}
-.legal-s h2{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.legal-s p{font-size:14px;font-weight:300;line-height:1.8;color:var(--grey);margin-bottom:12px}
+.legal-s{margin-bottom:36px}
+.legal-s h2{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--grey);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.legal-s p{font-size:14px;font-weight:300;line-height:1.8;color:var(--grey);margin-bottom:10px}
 .legal-s ul{list-style:none}
-.legal-s ul li{font-size:14px;font-weight:300;line-height:1.8;color:var(--grey);padding:4px 0 4px 16px;position:relative}
+.legal-s ul li{font-size:14px;font-weight:300;line-height:1.8;color:var(--grey);padding:3px 0 3px 16px;position:relative}
 .legal-s ul li::before{content:'/';position:absolute;left:0;color:var(--white);font-weight:700}
 
-/* ── BACK ── */
-.back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:28px;transition:color .15s,gap .18s;padding:0}
-.back:hover{color:var(--white);gap:12px}
-
-/* ── FOOTER ── */
+/* FOOTER */
 footer{border-top:1px solid var(--border);background:var(--black2)}
 .f-main{display:grid;grid-template-columns:1fr 1fr}
-.f-col{padding:36px 20px;border-bottom:1px solid var(--border)}
+@media(min-width:680px){.f-main{grid-template-columns:2fr 1fr 1fr 1fr}}
+.f-col{padding:32px 18px;border-bottom:1px solid var(--border)}
 .f-col:nth-child(odd){border-right:1px solid var(--border)}
-.f-col:last-child,.f-col:nth-last-child(2){border-bottom:none}
-.f-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;display:block}
-.f-desc{font-size:13px;font-weight:300;line-height:1.65;color:var(--grey);margin-bottom:20px}
+@media(min-width:680px){
+  .f-col{padding:52px 40px;border-bottom:none!important;border-right:1px solid var(--border)}
+  .f-col:last-child{border-right:none}
+  .f-brand-col{grid-column:1}
+}
+.f-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;display:block}
+.f-desc{font-size:13px;font-weight:300;line-height:1.65;color:var(--grey);margin-bottom:18px}
+.pays{display:flex;flex-wrap:wrap;gap:5px}
+.pay{padding:5px 10px;border:1px solid var(--border2);font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
 .f-col-title{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:16px}
 .f-nav{list-style:none}
 .f-nav li{margin-bottom:10px}
-.f-nav a,.f-nav button{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);text-decoration:none;background:none;border:none;cursor:pointer;transition:color .15s;padding:0}
+.f-nav a,.f-nav button{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--grey);text-decoration:none;background:none;border:none;cursor:pointer;transition:color .15s;padding:0}
 .f-nav a:hover,.f-nav button:hover{color:var(--white)}
-.pays{display:flex;flex-wrap:wrap;gap:5px}
-.pay{padding:5px 10px;border:1px solid var(--border2);font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
-.f-bot{border-top:1px solid var(--border);padding:16px 20px;display:flex;flex-direction:column;gap:6px}
+.f-bot{border-top:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+@media(min-width:680px){.f-bot{flex-direction:row;justify-content:space-between;padding:16px 40px}}
 .f-bot p{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
-
-@keyframes riseUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── DESKTOP OVERRIDES ── */
-@media(min-width:640px){
-  nav{height:64px;padding:0 32px}
-  .nav-logo{font-size:20px}
-  .nav-menu-btn{display:none!important}
-  .nav-mid{display:flex!important}
-  .pgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-  .loading-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-  .hero{margin-top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;flex-direction:unset}
-  .hero-img-wrap{display:none}
-  .hero-content{justify-content:flex-end;height:100%;border-right:1px solid var(--border)}
-  .hero-right-panel{display:block!important}
-  .hero-h1{font-size:clamp(72px,10vw,160px)}
-  .hero-sub{max-width:360px}
-  .cat-p{min-height:300px;padding:40px 36px}
-  .cat-title{font-size:clamp(44px,6vw,88px)}
-  .sec{padding:80px 40px}
-  .pd{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px)}
-  .pd-gal{position:sticky;top:64px;height:calc(100vh - 64px);aspect-ratio:unset;border-bottom:none;border-right:1px solid var(--border)}
-  .pd-info{padding:56px 48px}
-  .f-main{grid-template-columns:2fr 1fr 1fr 1fr}
-  .f-col{border-bottom:none!important;border-right:1px solid var(--border);padding:56px 40px}
-  .f-col:last-child{border-right:none}
-  .f-bot{flex-direction:row;justify-content:space-between;padding:18px 40px}
-  .legal{padding:80px 40px}
-  .prod-hdr{flex-wrap:nowrap}
-}
-
-/* ── MOBILE NAV SHOW ── */
-@media(max-width:639px){
-  .nav-mid{display:none}
-  .nav-menu-btn{display:block}
-}
 </style>
 </head>
 <body>
@@ -337,16 +236,16 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 <!-- NAV -->
 <nav>
   <button class="nav-logo" onclick="go('home')">Aftermath</button>
-  <div class="nav-mid">
-    <button class="nav-btn" onclick="go('all')">All</button>
-    <button class="nav-btn" onclick="go('womens')">Women</button>
-    <button class="nav-btn" onclick="go('mens')">Men</button>
+  <div class="nav-desk" style="display:none" id="nav-desk">
+    <button class="nav-d-btn" onclick="go('all')">All Products</button>
+    <button class="nav-d-btn" onclick="go('womens')">Women</button>
+    <button class="nav-d-btn" onclick="go('mens')">Men</button>
   </div>
-  <div style="display:flex;align-items:center;gap:0">
-    <button class="nav-menu-btn" id="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+  <div class="nav-right">
+    <button class="menu-btn" id="menu-toggle" onclick="toggleMenu()">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
-    <button class="nav-shop-btn" onclick="go('all')">Shop</button>
+    <button class="nav-shop" onclick="go('all')">Shop</button>
   </div>
 </nav>
 
@@ -356,90 +255,118 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <button class="mob-link" onclick="go('womens');closeMenu()">Women's Clothing</button>
   <button class="mob-link" onclick="go('mens');closeMenu()">Men's Clothing</button>
   <button class="mob-link" onclick="go('privacy');closeMenu()">Privacy Policy</button>
-  <button class="mob-link" onclick="go('terms');closeMenu()">Terms & Conditions</button>
+  <button class="mob-link" onclick="go('terms');closeMenu()">Terms &amp; Conditions</button>
 </div>
 
-<!-- HOME -->
+<!-- ══════════════ HOME ══════════════ -->
 <div class="page active" id="page-home">
-  <!-- Hero: mobile = full bleed image + text overlay; desktop = split -->
   <div class="hero">
-    <!-- Mobile background image -->
-    <div class="hero-img-wrap">
+    <!-- Mobile bg image -->
+    <div class="hero-img-bg">
       <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="">
     </div>
-    <!-- Left panel content -->
+    <!-- Left content -->
     <div class="hero-content">
-      <p class="hero-tag">Drop 001 — 2025</p>
-      <h1 class="hero-h1">AFTER<br>MATH<br><span>STUDIO</span></h1>
-      <p class="hero-sub">Street-ready gear built for the culture. Limited runs, no restocks. Get it before it's gone.</p>
+      <p class="hero-eyebrow">Drop 001 — 2025</p>
+      <h1 class="hero-h1">AFTER<br>MATH<br><span class="dim">STUDIO</span></h1>
+      <p class="hero-sub">Street-ready gear built for the culture. Limited runs, no restocks.</p>
       <div class="hero-acts">
         <button class="btn-w" onclick="go('all')">Shop Now</button>
         <button class="btn-b" onclick="go('all')">View All</button>
       </div>
     </div>
     <!-- Desktop right panel -->
-    <div class="hero-right-panel" style="display:none;position:relative;overflow:hidden;background:var(--black2)">
-      <img style="width:100%;height:100%;object-fit:cover;opacity:.85;filter:grayscale(10%)" src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie">
-      <div style="position:absolute;top:0;left:0;right:0;padding:20px 24px;display:flex;justify-content:space-between;background:linear-gradient(to bottom,rgba(5,5,5,.65),transparent)">
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)">Drop 001</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:var(--white);color:var(--black);padding:5px 12px">Limited</span>
+    <div class="hero-right">
+      <div class="hero-right-top">
+        <span>Drop 001</span>
+        <span class="drop-badge">Limited</span>
       </div>
-      <div style="position:absolute;bottom:24px;left:24px;background:var(--black);border:1px solid var(--border2);padding:12px 18px">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--off);margin-bottom:3px" id="hero-prod-name">Shoot Hoodie / Star Orbit</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900" id="hero-prod-price">$47.04</div>
+      <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie">
+      <div class="hero-price-tag">
+        <div class="hpt-name">Shoot Hoodie / Star Orbit</div>
+        <div class="hpt-price">$47.04</div>
       </div>
     </div>
   </div>
 
-  <!-- Marquee -->
   <div class="mq">
     <div class="mq-inner">
-      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span>
-      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span>
+      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
+      <span>Aftermath Studio</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Limited Edition</span><span class="dot">✦</span><span>No Restocks</span><span class="dot">✦</span><span>Street Ready</span><span class="dot">✦</span><span>3 Items Available</span><span class="dot">✦</span>
     </div>
   </div>
 
-  <!-- Categories -->
   <div class="cat-split">
     <div class="cat-p" onclick="go('womens')">
-      <div class="cat-bg"></div><div class="cat-lines"></div>
-      <div class="cat-ghost">01</div>
+      <div class="cat-bg"></div><div class="cat-lines"></div><div class="cat-ghost">01</div>
       <div class="cat-content">
-        <span class="cat-label-tag">Collection</span>
+        <span class="cat-tag">Collection</span>
         <div class="cat-title">Women's<br>Clothing</div>
         <div class="cat-arrow">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
     </div>
     <div class="cat-p" onclick="go('mens')">
-      <div class="cat-bg"></div><div class="cat-lines"></div>
-      <div class="cat-ghost">02</div>
+      <div class="cat-bg"></div><div class="cat-lines"></div><div class="cat-ghost">02</div>
       <div class="cat-content">
-        <span class="cat-label-tag">Collection</span>
+        <span class="cat-tag">Collection</span>
         <div class="cat-title">Men's<br>Clothing</div>
         <div class="cat-arrow">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
     </div>
   </div>
 
-  <!-- Featured products — live loaded -->
   <div class="sec">
     <div class="sec-label">Featured</div>
-    <div class="sec-title">Latest <span>Drops</span></div>
-    <div class="white-line"></div>
-    <div id="home-products"><div class="loading-grid"><div><div class="loading-card"></div><div class="loading-card-info"></div></div><div><div class="loading-card"></div><div class="loading-card-info"></div></div></div></div>
+    <div class="sec-title">Latest <span class="dim">Drops</span></div>
+    <div class="w-line"></div>
+    <div class="pgrid">
+      <div class="pcard" onclick="openProduct(0)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie Star Orbit" loading="lazy">
+          <div class="pcard-badge">New Drop</div>
+          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
+          <div class="pcard-price">$47.04</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(1)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt Shooting Star" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$27.08</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(2)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt Shooting Star" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$16.75</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="hf"></div>
 </div>
 
-<!-- ALL PRODUCTS -->
+<!-- ══════════════ ALL PRODUCTS ══════════════ -->
 <div class="page" id="page-all">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
     <div class="prod-hdr">
       <div>
         <div class="sec-label">Shop</div>
-        <h1 class="sec-title">All <span>Products</span></h1>
-        <div class="prod-count" id="all-count" style="margin-top:6px">Loading…</div>
+        <h1 class="sec-title">All <span class="dim">Products</span></h1>
+        <div class="prod-count" style="margin-top:4px">3 Items</div>
       </div>
       <div class="sort-row">
         <button class="sort-btn on" onclick="setSrt(this)">Default</button>
@@ -447,46 +374,148 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
         <button class="sort-btn" onclick="setSrt(this)">Price ↓</button>
       </div>
     </div>
-    <div id="all-products"><div class="loading-grid"><div><div class="loading-card"></div><div class="loading-card-info"></div></div><div><div class="loading-card"></div><div class="loading-card-info"></div></div></div></div>
+    <div class="pgrid">
+      <div class="pcard" onclick="openProduct(0)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
+          <div class="pcard-badge">New Drop</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
+          <div class="pcard-price">$47.04</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(1)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$27.08</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(2)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$16.75</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="af"></div>
 </div>
 
-<!-- WOMENS -->
+<!-- ══════════════ WOMENS ══════════════ -->
 <div class="page" id="page-womens">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
     <div class="prod-hdr">
       <div>
         <div class="sec-label">Collection</div>
-        <h1 class="sec-title">Women's <span>Clothing</span></h1>
-        <div class="prod-count" id="womens-count" style="margin-top:6px">Loading…</div>
+        <h1 class="sec-title">Women's <span class="dim">Clothing</span></h1>
+        <div class="prod-count" style="margin-top:4px">3 Items</div>
       </div>
     </div>
-    <div id="womens-products"><div class="loading-grid"><div><div class="loading-card"></div><div class="loading-card-info"></div></div><div><div class="loading-card"></div><div class="loading-card-info"></div></div></div></div>
+    <div class="pgrid">
+      <div class="pcard" onclick="openProduct(0)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
+          <div class="pcard-badge">New Drop</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
+          <div class="pcard-price">$47.04</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(1)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$27.08</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(2)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$16.75</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="wf"></div>
 </div>
 
-<!-- MENS -->
+<!-- ══════════════ MENS ══════════════ -->
 <div class="page" id="page-mens">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
     <div class="prod-hdr">
       <div>
         <div class="sec-label">Collection</div>
-        <h1 class="sec-title">Men's <span>Clothing</span></h1>
-        <div class="prod-count" id="mens-count" style="margin-top:6px">Loading…</div>
+        <h1 class="sec-title">Men's <span class="dim">Clothing</span></h1>
+        <div class="prod-count" style="margin-top:4px">3 Items</div>
       </div>
     </div>
-    <div id="mens-products"><div class="loading-grid"><div><div class="loading-card"></div><div class="loading-card-info"></div></div><div><div class="loading-card"></div><div class="loading-card-info"></div></div></div></div>
+    <div class="pgrid">
+      <div class="pcard" onclick="openProduct(0)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024" alt="Shoot Hoodie" loading="lazy">
+          <div class="pcard-badge">New Drop</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot Hoodie / Star Orbit</div>
+          <div class="pcard-price">$47.04</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(1)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$27.08</div>
+        </div>
+      </div>
+      <div class="pcard" onclick="openProduct(2)">
+        <div class="pcard-img">
+          <img src="https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048" alt="Shoot T-Shirt" loading="lazy">
+          <div class="pcard-badge">New</div>
+          <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name">Shoot T-Shirt / Shooting Star</div>
+          <div class="pcard-price">$16.75</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="mf"></div>
 </div>
 
-<!-- PRODUCT DETAIL (dynamic) -->
+<!-- ══════════════ PRODUCT DETAIL ══════════════ -->
 <div class="page" id="page-product">
-  <div class="pd" id="pd-inner">
+  <div class="pd">
     <div class="pd-gal"><img id="pd-img" src="" alt=""></div>
     <div class="pd-info">
       <div class="breadcrumb">
@@ -496,10 +525,10 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
         <span style="color:var(--border2)">›</span>
         <span id="pd-bread" style="color:var(--grey)">Product</span>
       </div>
-      <div class="pd-name" id="pd-name">—</div>
-      <div class="pd-sub" id="pd-sub">—</div>
-      <div class="pd-price" id="pd-price">—</div>
-      <p class="pd-desc" id="pd-desc">Heavyweight pullover hoodie. Oversized fit, screen-printed graphic on premium fleece. Ribbed cuffs, hem and kangaroo pocket. Strictly limited — no restock.</p>
+      <div class="pd-name" id="pd-name"></div>
+      <div class="pd-sub" id="pd-sub"></div>
+      <div class="pd-price" id="pd-price"></div>
+      <p class="pd-desc" id="pd-desc"></p>
       <div class="size-lbl">Select Size</div>
       <div class="sizes">
         <button class="sopt" onclick="pickSize(this)">XS</button>
@@ -510,19 +539,13 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
         <button class="sopt" onclick="pickSize(this)">2XL</button>
       </div>
       <button class="buy-btn" id="buy-btn" onclick="buyNow()">Buy Now!</button>
-      <div class="pd-meta">
-        <div class="pd-row"><span>Material</span><span>450gsm Fleece</span></div>
-        <div class="pd-row"><span>Fit</span><span>Oversized</span></div>
-        <div class="pd-row"><span>Print</span><span>Screen Printed</span></div>
-        <div class="pd-row"><span>Edition</span><span>Limited — No Restock</span></div>
-        <div class="pd-row"><span>Ships</span><span>Worldwide · 5–10 Days</span></div>
-      </div>
+      <div class="pd-meta" id="pd-meta"></div>
     </div>
   </div>
   <div id="pf"></div>
 </div>
 
-<!-- PRIVACY -->
+<!-- ══════════════ PRIVACY ══════════════ -->
 <div class="page" id="page-privacy">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -531,12 +554,12 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
     <div class="legal-s"><h2>2. How We Use It</h2><ul><li>Process and fulfil your orders</li><li>Send order updates and transactional emails</li><li>Respond to your enquiries</li><li>Send marketing with your consent</li><li>Improve our site and services</li><li>Meet legal obligations</li></ul></div>
     <div class="legal-s"><h2>3. Sharing</h2><p>We don't sell, trade or rent your data. We may share with trusted service providers helping run our business — under confidentiality agreements only.</p></div>
     <div class="legal-s"><h2>4. Cookies</h2><p>We use cookies to improve your experience. You can turn these off in your browser settings at any time.</p></div>
-    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at <span style="color:var(--white)">studio@aftermath.co.uk</span> to exercise these rights.</p></div>
+    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at <span style="color:var(--white)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e192959485888ea180879584938c809589cf828ecf948a">[email&#160;protected]</a></span>.</p></div>
   </div>
   <div id="pvf"></div>
 </div>
 
-<!-- TERMS -->
+<!-- ══════════════ TERMS ══════════════ -->
 <div class="page" id="page-terms">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -544,9 +567,9 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
     <div class="legal-s"><h2>1. Acceptance</h2><p>Using this site means you accept these terms. If you don't agree, don't use the site.</p></div>
     <div class="legal-s"><h2>2. Products &amp; Pricing</h2><p>All prices in USD. We can change prices or discontinue products at any time. Orders subject to availability.</p></div>
     <div class="legal-s"><h2>3. Orders &amp; Payment</h2><ul><li>Orders confirmed only when payment clears</li><li>We accept Visa, Mastercard, Amex, Apple Pay, Google Pay</li><li>All payments processed via secure encrypted connection</li><li>We reserve the right to cancel any order</li></ul></div>
-    <div class="legal-s"><h2>4. Shipping</h2><p>We ship worldwide. Delivery times are estimates only. Customs duties and import taxes are your responsibility. Risk passes to you on delivery.</p></div>
-    <div class="legal-s"><h2>5. Returns</h2><p>Returns accepted within 30 days for unworn, unwashed items with tags. Limited edition pieces are final sale. Contact us to start a return.</p></div>
-    <div class="legal-s"><h2>6. Governing Law</h2><p>These terms are governed by the laws of England and Wales. Disputes fall under the exclusive jurisdiction of courts in England and Wales.</p></div>
+    <div class="legal-s"><h2>4. Shipping</h2><p>We ship worldwide. Delivery times are estimates only. Customs duties are your responsibility. Risk passes to you on delivery.</p></div>
+    <div class="legal-s"><h2>5. Returns</h2><p>Returns accepted within 30 days for unworn, unwashed items with tags. Limited edition pieces are final sale.</p></div>
+    <div class="legal-s"><h2>6. Governing Law</h2><p>These terms are governed by the laws of England and Wales.</p></div>
   </div>
   <div id="tf"></div>
 </div>
@@ -555,12 +578,10 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 <template id="ftpl">
   <footer>
     <div class="f-main">
-      <div class="f-col" style="grid-column:1/-1;border-right:none!important" id="f-brand">
+      <div class="f-col f-brand-col" style="grid-column:1/-1">
         <span class="f-logo">Aftermath Studio</span>
         <p class="f-desc">Street-ready gear built for the culture. Limited runs, no restocks.</p>
-        <div class="pays">
-          <div class="pay">Visa</div><div class="pay">Mastercard</div><div class="pay">Amex</div><div class="pay">Apple Pay</div><div class="pay">Google Pay</div>
-        </div>
+        <div class="pays"><div class="pay">Visa</div><div class="pay">Mastercard</div><div class="pay">Amex</div><div class="pay">Apple Pay</div><div class="pay">Google Pay</div></div>
       </div>
       <div class="f-col">
         <div class="f-col-title">Shop</div>
@@ -585,147 +606,124 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   </footer>
 </template>
 
-<script>
-/* ── STATE ── */
-let products = [];
-let currentProduct = null;
-
-/* ── FETCH PRODUCTS FROM LIVE SITE ── */
-async function fetchProducts() {
-  try {
-    const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://aftermath.vtxgames.co.uk/category/all/1'));
-    const data = await res.json();
-    const html = data.contents;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const items = [];
-    // Parse product links from Printify store
-    doc.querySelectorAll('a[href^="/product/"]').forEach(a => {
-      const img = a.querySelector('img');
-      const nameEl = a.querySelector('img + *') || a;
-      const priceEl = a.querySelector('strong');
-      if (!img) return;
-      const href = a.getAttribute('href');
-      // dedupe
-      if (items.find(i => i.url === href)) return;
-      // extract name from alt or text
-      let name = img.getAttribute('alt') || img.getAttribute('title') || '';
-      name = name.replace(/\s*\|?\s*$/, '').trim();
-      const price = priceEl ? priceEl.textContent.trim() : '';
-      const imgSrc = img.getAttribute('src') || '';
-      if (href && name && imgSrc) {
-        items.push({ url: 'https://aftermath.vtxgames.co.uk' + href, name, price, img: imgSrc });
-      }
-    });
-    return items;
-  } catch(e) {
-    return null;
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── PRODUCTS DATA ── */
+const PRODUCTS = [
+  {
+    name: 'Shoot Hoodie',
+    sub: 'Star Orbit',
+    price: '$47.04',
+    img: 'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024',
+    imgStyle: '',
+    url: 'https://aftermath.vtxgames.co.uk/product/27222349/shoot-hoodie-star-orbit',
+    desc: 'Heavyweight pullover hoodie. Oversized fit, screen-printed Star Orbit graphic on 450gsm fleece. Ribbed cuffs, hem and kangaroo pocket. Drop 001 — strictly limited, no restock.',
+    meta: [
+      ['Type','Pullover Hoodie'],
+      ['Material','450gsm Fleece'],
+      ['Fit','Oversized'],
+      ['Print','Screen Printed'],
+      ['Edition','Limited — No Restock'],
+      ['Ships','Worldwide · 5–10 Days']
+    ]
+  },
+  {
+    name: 'Shoot T-Shirt',
+    sub: 'Shooting Star',
+    price: '$27.08',
+    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048',
+    imgStyle: '',
+    url: 'https://aftermath.vtxgames.co.uk/product/shoot-t-shirt-shooting-star',
+    desc: 'Classic fit tee. Screen-printed Shooting Star graphic on 100% premium cotton. Lightweight, breathable, pre-shrunk. Drop 001 — strictly limited, no restock.',
+    meta: [
+      ['Type','T-Shirt'],
+      ['Material','100% Premium Cotton'],
+      ['Fit','Classic'],
+      ['Print','Screen Printed'],
+      ['Edition','Limited — No Restock'],
+      ['Ships','Worldwide · 5–10 Days']
+    ]
+  },
+  {
+    name: 'Shoot T-Shirt',
+    sub: 'Shooting Star',
+    price: '$16.75',
+    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772921905883&s=2048',
+    imgStyle: '',
+    url: 'https://aftermath.vtxgames.co.uk/product/shoot-t-shirt-shooting-star',
+    desc: 'Classic fit tee. Screen-printed Shooting Star graphic on 100% premium cotton. Lightweight, breathable, pre-shrunk. Drop 001 — strictly limited, no restock.',
+    meta: [
+      ['Type','T-Shirt'],
+      ['Material','100% Premium Cotton'],
+      ['Fit','Classic'],
+      ['Print','Screen Printed'],
+      ['Edition','Limited — No Restock'],
+      ['Ships','Worldwide · 5–10 Days']
+    ]
   }
-}
+];
 
-/* ── RENDER PRODUCT GRID ── */
-function makeCard(p, idx) {
-  // Split name on | or — for display
-  const parts = p.name.split(/[|\-–—]/);
-  const main = parts[0].trim();
-  const sub = parts.slice(1).join(' ').trim();
-  return `<div class="pcard" onclick="openProduct(${idx})">
-    <div class="pcard-img">
-      <img src="${p.img}" alt="${p.name}" loading="lazy">
-      <div class="pcard-badge">New Drop</div>
-      <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
-    </div>
-    <div class="pcard-info">
-      <div class="pcard-name">${sub ? main + ' / ' + sub : main}</div>
-      <div class="pcard-price">${p.price}</div>
-    </div>
-  </div>`;
-}
+let currentUrl = '';
 
-function renderGrid(containerId, items, countId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  if (!items || items.length === 0) {
-    el.innerHTML = '<p style="color:var(--grey);font-family:\'Barlow Condensed\',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:20px 0">No products found</p>';
-    if (countId) document.getElementById(countId).textContent = '0 items';
-    return;
-  }
-  el.innerHTML = '<div class="pgrid">' + items.map((p, i) => makeCard(p, products.indexOf(p))).join('') + '</div>';
-  if (countId) document.getElementById(countId).textContent = items.length + ' item' + (items.length !== 1 ? 's' : '');
-}
-
-/* ── OPEN PRODUCT DETAIL ── */
+/* ── OPEN PRODUCT ── */
 function openProduct(idx) {
-  currentProduct = products[idx] || products[0];
-  if (!currentProduct) return;
-  const parts = currentProduct.name.split(/[|\-–—]/);
-  const main = parts[0].trim();
-  const sub = parts.slice(1).join(' / ').trim();
-  document.getElementById('pd-img').src = currentProduct.img;
-  document.getElementById('pd-name').textContent = main;
-  document.getElementById('pd-sub').textContent = sub || '';
-  document.getElementById('pd-price').textContent = currentProduct.price;
-  document.getElementById('pd-bread').textContent = main;
-  document.getElementById('buy-btn').setAttribute('data-url', currentProduct.url);
-  // reset size selection
-  document.querySelectorAll('.sopt').forEach(s => s.classList.remove('sel'));
-  document.querySelectorAll('.sopt')[2]?.classList.add('sel');
+  const p = PRODUCTS[idx];
+  document.getElementById('pd-img').src = p.img;
+  document.getElementById('pd-img').style.cssText = p.imgStyle;
+  document.getElementById('pd-name').textContent = p.name;
+  document.getElementById('pd-sub').textContent = p.sub;
+  document.getElementById('pd-price').textContent = p.price;
+  document.getElementById('pd-bread').textContent = p.name;
+  document.getElementById('pd-desc').textContent = p.desc;
+  document.getElementById('pd-meta').innerHTML = p.meta.map(r =>
+    `<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`
+  ).join('');
+  currentUrl = p.url;
+  // reset sizes
+  document.querySelectorAll('.sopt').forEach((s,i) => s.classList.toggle('sel', i===2));
   go('product');
-}
-
-/* ── LOAD ALL DATA ── */
-async function loadData() {
-  const fetched = await fetchProducts();
-  if (fetched && fetched.length > 0) {
-    products = fetched;
-  } else {
-    // Fallback to known product
-    products = [{
-      name: 'Shoot Hoodie | Star Orbit',
-      price: '$47.04',
-      img: 'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772909909052&s=1024',
-      url: 'https://aftermath.vtxgames.co.uk/product/27222349/shoot-hoodie-star-orbit'
-    }];
-  }
-  // Update hero price tag with newest product
-  if (products[0]) {
-    const hp = document.getElementById('hero-prod-name');
-    const hpr = document.getElementById('hero-prod-price');
-    if(hp) hp.textContent = products[0].name.replace(/\|/g,' /');
-    if(hpr) hpr.textContent = products[0].price;
-  }
-  // Render all grids
-  renderGrid('home-products', products, null);
-  renderGrid('all-products', products, 'all-count');
-  renderGrid('womens-products', products, 'womens-count');
-  renderGrid('mens-products', products, 'mens-count');
 }
 
 /* ── ROUTER ── */
 const FT = document.getElementById('ftpl');
-const slots = { home:'hf', all:'af', womens:'wf', mens:'mf', product:'pf', privacy:'pvf', terms:'tf' };
+const slots = {home:'hf',all:'af',womens:'wf',mens:'mf',product:'pf',privacy:'pvf',terms:'tf'};
 function go(pg) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + pg).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo({top:0, behavior:'instant'});
   if (slots[pg]) {
     const s = document.getElementById(slots[pg]);
     if (s && !s.hasChildNodes()) s.appendChild(FT.content.cloneNode(true));
   }
   closeMenu();
+  // show/hide desktop nav
+  const desk = document.getElementById('nav-desk');
+  if(desk) desk.style.display = window.innerWidth >= 680 ? 'flex' : 'none';
 }
 
 /* ── MOBILE MENU ── */
 function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
 function closeMenu() { document.getElementById('mob-menu').classList.remove('open'); }
 
+/* ── RESPONSIVE NAV ── */
+function checkNav() {
+  const desk = document.getElementById('nav-desk');
+  const menuBtn = document.getElementById('menu-toggle');
+  if (!desk) return;
+  if (window.innerWidth >= 680) {
+    desk.style.display = 'flex';
+    menuBtn.style.display = 'none';
+    closeMenu();
+  } else {
+    desk.style.display = 'none';
+    menuBtn.style.display = 'block';
+  }
+}
+window.addEventListener('resize', checkNav);
+
 /* ── BUY NOW ── */
 function buyNow() {
-  const url = document.getElementById('buy-btn').getAttribute('data-url')
-    || (currentProduct && currentProduct.url)
-    || 'https://aftermath.vtxgames.co.uk';
   showToast('Redirecting…');
-  setTimeout(() => window.open(url, '_blank'), 600);
+  setTimeout(() => window.open(currentUrl, '_blank'), 600);
 }
 
 /* ── SIZE ── */
@@ -735,11 +733,4 @@ function pickSize(b) { document.querySelectorAll('.sopt').forEach(s => s.classLi
 function setSrt(b) { document.querySelectorAll('.sort-btn').forEach(s => s.classList.remove('on')); b.classList.add('on'); }
 
 /* ── TOAST ── */
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
-
-/* ── INIT ── */
-go('home');
-loadData();
-</script>
-</body>
-</html>
+function showToast(
