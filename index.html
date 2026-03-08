@@ -684,6 +684,46 @@ let PRODUCTS = [];
 let currentUrl = '';
 let serverOnline = false;
 
+// ── NORMALIZE PRODUCT ────────────────────────────────────
+// Ensures every product has a consistent shape regardless of server vs fallback format.
+// A "color" entry must be an object with: { name, hex, imgs (array), sizes (array) }
+// A "size" entry must be a plain string like "S", "M", "L".
+function normalizeProduct(p) {
+  // Normalize colors: must be array of objects with name + hex
+  let colors = [];
+  if (Array.isArray(p.colors) && p.colors.length > 0) {
+    colors = p.colors.map(c => {
+      // If it's already a proper color object with a hex value, keep it
+      if (c && typeof c === 'object' && c.hex) {
+        return {
+          name: c.name || 'Default',
+          hex: c.hex,
+          imgs: Array.isArray(c.imgs) && c.imgs.length > 0 ? c.imgs : (Array.isArray(p.imgs) ? p.imgs : [p.img].filter(Boolean)),
+          sizes: Array.isArray(c.sizes) && c.sizes.length > 0 ? c.sizes : null // null = fall back to product-level sizes
+        };
+      }
+      // If it's a string — it's actually a size that leaked into colors, discard it
+      return null;
+    }).filter(Boolean);
+  }
+
+  // Normalize sizes: must be array of strings that are NOT hex colors
+  let sizes = [];
+  if (Array.isArray(p.sizes) && p.sizes.length > 0) {
+    sizes = p.sizes.filter(s => {
+      if (typeof s !== 'string') return false;
+      // Reject anything that looks like a hex color (#abc or #aabbcc)
+      if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s)) return false;
+      // Reject anything that looks like a CSS color keyword with no spaces (e.g. "black", "white") IF colors array already has items
+      // We only reject if this size value already appears as a color name
+      if (colors.length > 0 && colors.some(c => c.name.toLowerCase() === s.toLowerCase())) return false;
+      return true;
+    });
+  }
+
+  return { ...p, colors, sizes };
+}
+
 // ── INIT ─────────────────────────────────────────────────
 async function initApp() {
   const errEl = document.getElementById('loading-err');
@@ -698,12 +738,12 @@ async function initApp() {
     const res = await fetch(`${API}/products`);
     if (!res.ok) throw new Error(`Server responded ${res.status}`);
     const data = await res.json();
-    PRODUCTS = data.products;
+    PRODUCTS = data.products.map(normalizeProduct);
     serverOnline = true;
     setServerStatus(true);
   } catch (err) {
     console.warn('Could not reach server, using fallback data:', err.message);
-    PRODUCTS = FALLBACK_PRODUCTS;
+    PRODUCTS = FALLBACK_PRODUCTS.map(normalizeProduct);
     serverOnline = false;
     setServerStatus(false);
   }
@@ -733,8 +773,8 @@ async function initApp() {
   document.getElementById('all-run-count').textContent = countLabel(runCount);
   document.getElementById('shoot-page-count').textContent = `${shootCount} Items`;
   document.getElementById('run-page-count').textContent = `${runCount} Items`;
-  document.getElementById('kids-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories.includes('kids')).length);
-  document.getElementById('acc-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories.includes('accessories')).length);
+  document.getElementById('kids-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).length);
+  document.getElementById('acc-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).length);
 
   renderGrids();
 
@@ -781,8 +821,8 @@ function renderGrids() {
   const runProducts = PRODUCTS.filter(p => p.collection === 'run');
   const allShoot = shootProducts.map(p => card(p, PRODUCTS.indexOf(p))).join('');
   const allRun = runProducts.map(p => card(p, PRODUCTS.indexOf(p))).join('');
-  const acc = PRODUCTS.filter(p => p.categories.includes('accessories')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
-  const kids = PRODUCTS.filter(p => p.categories.includes('kids')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  const acc = PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  const kids = PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
 
   document.getElementById('home-shoot-grid').innerHTML = allShoot;
   document.getElementById('home-run-grid').innerHTML = allRun;
@@ -806,7 +846,7 @@ function openProduct(idx) {
   document.getElementById('pd-price').textContent = p.price;
   document.getElementById('pd-bread').textContent = p.name;
   document.getElementById('pd-desc').textContent = p.desc;
-  document.getElementById('pd-meta').innerHTML = p.meta.map(r =>
+  document.getElementById('pd-meta').innerHTML = (p.meta || []).map(r =>
     `<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`
   ).join('');
 
@@ -817,22 +857,27 @@ function openProduct(idx) {
   const isRun = p.collection === 'run';
 
   // ── Colors ─────────────────────────────────────────────
+  // Only show the color picker if there are 2 or more distinct colors with valid hex values
   const colorsWrap = document.getElementById('pd-colors-wrap');
   const colorsEl   = document.getElementById('pd-colors');
+  const validColors = (p.colors || []).filter(c => c && c.hex);
 
-  if (p.colors && p.colors.length > 1) {
+  if (validColors.length >= 2) {
     colorsWrap.style.display = 'block';
-    colorsEl.innerHTML = p.colors.map((c, i) =>
+    colorsEl.innerHTML = validColors.map((c, i) =>
       `<button class="copt${i === 0 ? ' sel' : ''}${isRun ? ' run-style' : ''}"
-        data-color="${c.name.toLowerCase()}"
+        data-color="${(c.name || '').toLowerCase()}"
+        data-idx="${i}"
         style="background:${c.hex}"
         title="${c.name}"
         onclick="pickColor(this, ${idx}, ${i})"></button>`
     ).join('');
-    document.getElementById('pd-color-name').textContent = p.colors[0].name;
+    document.getElementById('pd-color-name').textContent = validColors[0].name;
     renderColorVariant(p, 0, isRun);
   } else {
     colorsWrap.style.display = 'none';
+    colorsEl.innerHTML = '';
+    document.getElementById('pd-color-name').textContent = '';
     renderColorVariant(p, 0, isRun);
   }
 
@@ -842,30 +887,54 @@ function openProduct(idx) {
 }
 
 function renderColorVariant(p, colorIdx, isRun) {
-  const color = (p.colors && p.colors[colorIdx]) ? p.colors[colorIdx] : null;
-  const imgs  = (color && color.imgs && color.imgs.length) ? color.imgs : p.imgs;
-  const sizes = (color && color.sizes && color.sizes.length) ? color.sizes : p.sizes;
+  const validColors = (p.colors || []).filter(c => c && c.hex);
+  const color = validColors[colorIdx] || null;
 
+  // Resolve images: prefer color-level imgs, fall back to product-level imgs, then single img
+  const imgs = (color && Array.isArray(color.imgs) && color.imgs.length > 0)
+    ? color.imgs
+    : (Array.isArray(p.imgs) && p.imgs.length > 0)
+      ? p.imgs
+      : [p.img].filter(Boolean);
+
+  // Resolve sizes: prefer color-level sizes (if non-null and non-empty), fall back to product-level sizes
+  const sizes = (color && Array.isArray(color.sizes) && color.sizes.length > 0)
+    ? color.sizes
+    : (Array.isArray(p.sizes) && p.sizes.length > 0)
+      ? p.sizes
+      : [];
+
+  // Set main image
   document.getElementById('pd-img').src = imgs[0] || '';
 
+  // Render thumbnails
   document.getElementById('pd-thumbs').innerHTML = imgs.map((src, i) =>
     `<div class="pd-thumb${i === 0 ? ' active' : ''}" onclick="switchImg(this,'${src}')">
       <img src="${src}" alt="" loading="lazy">
     </div>`
   ).join('');
 
-  const defaultSizeIdx = Math.min(p.defaultSize || 3, Math.max(0, sizes.length - 1));
-  document.getElementById('pd-sizes').innerHTML = sizes.map((s, i) =>
-    `<button class="sopt${i === defaultSizeIdx ? ' sel' : ''}${isRun ? ' run-style' : ''}" onclick="pickSize(this)">${s}</button>`
-  ).join('');
+  // Render sizes — guard against empty array
+  if (sizes.length === 0) {
+    document.getElementById('pd-sizes-wrap').style.display = 'none';
+    document.getElementById('pd-sizes').innerHTML = '';
+  } else {
+    document.getElementById('pd-sizes-wrap').style.display = 'block';
+    const defaultSizeIdx = Math.min(p.defaultSize != null ? p.defaultSize : 3, sizes.length - 1);
+    document.getElementById('pd-sizes').innerHTML = sizes.map((s, i) =>
+      `<button class="sopt${i === defaultSizeIdx ? ' sel' : ''}${isRun ? ' run-style' : ''}" onclick="pickSize(this)">${s}</button>`
+    ).join('');
+  }
 }
 
 function pickColor(btn, productIdx, colorIdx) {
   const p = PRODUCTS[productIdx];
   const isRun = p.collection === 'run';
-  document.querySelectorAll('.copt').forEach(b => b.classList.remove('sel'));
+  // Scope querySelector to the colors container, not the whole document
+  document.querySelectorAll('#pd-colors .copt').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
-  document.getElementById('pd-color-name').textContent = p.colors[colorIdx].name;
+  const validColors = (p.colors || []).filter(c => c && c.hex);
+  document.getElementById('pd-color-name').textContent = (validColors[colorIdx] && validColors[colorIdx].name) || '';
   renderColorVariant(p, colorIdx, isRun);
 }
 
