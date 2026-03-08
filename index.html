@@ -23,16 +23,12 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 @keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes riseUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* LOADING */
 .loading-screen{position:fixed;inset:0;background:var(--black);z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .4s}
 .loading-screen.hidden{opacity:0;pointer-events:none}
 .loading-logo{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
 .loading-spinner{width:24px;height:24px;border:2px solid var(--border2);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite}
 .loading-err{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#eb5757;margin-top:8px;text-align:center;max-width:300px;line-height:1.6}
 .retry-btn{padding:10px 22px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;border:none;cursor:pointer;margin-top:4px}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(5,5,5,.97);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--white);background:none;border:none;cursor:pointer}
 .nav-desk{display:none;gap:0}
@@ -46,8 +42,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .menu-btn:hover{color:var(--white)}
 .nav-shop{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:var(--white);color:var(--black);border:none;cursor:pointer;padding:8px 16px;transition:background .15s}
 .nav-shop:hover{background:var(--off)}
-
-/* MOBILE MENU */
 .mob-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:490;background:var(--black2);border-bottom:1px solid var(--border);flex-direction:column}
 .mob-menu.open{display:flex}
 .mob-link{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;padding:18px 22px;border-bottom:1px solid var(--border);text-align:left;transition:color .15s,background .15s}
@@ -56,8 +50,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .mob-section-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;padding:12px 22px 4px;color:#444;border-bottom:1px solid var(--border)}
 .mob-link.run-link{color:#d4a843}
 .mob-link.run-link:hover{color:#f0c55a}
-
-/* HERO */
 .hero{margin-top:56px;position:relative;height:calc(100vh - 56px);min-height:480px;overflow:hidden;display:flex;flex-direction:column}
 .hero-img-bg{position:absolute;inset:0}
 .hero-img-bg img{width:100%;height:100%;object-fit:cover;opacity:.38;filter:grayscale(15%)}
@@ -78,21 +70,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .hero-price-tag{position:absolute;bottom:24px;left:24px;background:var(--black);border:1px solid var(--border2);padding:12px 18px;z-index:2}
 .hpt-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--off);margin-bottom:3px}
 .hpt-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900}
-
-/* BUTTONS */
 .btn-w{padding:14px 28px;background:var(--white);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:background .15s;flex-shrink:0}
 .btn-w:hover{background:var(--off)}
 .btn-b{padding:13px 24px;background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--border2);cursor:pointer;transition:border-color .15s;flex-shrink:0}
 .btn-b:hover{border-color:var(--white)}
-
-/* MARQUEE */
 .mq{overflow:hidden;padding:12px 0;background:var(--white)}
 .mq-inner{display:inline-flex;white-space:nowrap;animation:mq 22s linear infinite}
 .mq-inner span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--black);padding:0 16px}
 .mq-inner .dot{color:#aaa;padding:0 6px}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* COLLECTION SPLIT */
 .col-split{display:grid;grid-template-columns:1fr;border-top:1px solid var(--border)}
 .col-hero{position:relative;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 28px;cursor:pointer;border-bottom:1px solid var(--border)}
 .col-hero:last-child{border-bottom:none}
@@ -119,15 +105,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .col-hero-badge{position:absolute;top:20px;right:20px;z-index:3;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;padding:6px 14px}
 .col-hero.shoot .col-hero-badge{background:var(--white);color:var(--black)}
 .col-hero.run .col-hero-badge{background:var(--run);color:var(--black)}
-
-/* SECTION */
 .sec{padding:44px 18px}
 .sec-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
 .sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,9vw,72px);font-weight:900;line-height:.9;text-transform:uppercase}
 .sec-title .dim{color:var(--grey);font-weight:400}
 .sec-title .gold{color:var(--run);font-weight:900}
-
-/* COLLECTION HEADER */
 .col-sec-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 .col-sec-bar{width:3px;height:44px;flex-shrink:0}
 .col-sec-bar.shoot{background:var(--white)}
@@ -137,8 +119,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .col-sec-label.run{color:var(--run)}
 .col-sec-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(26px,7vw,48px);font-weight:900;line-height:.9;text-transform:uppercase}
 .col-sec-count{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-left:auto;flex-shrink:0}
-
-/* PRODUCT GRID */
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .pcard{background:var(--black2);cursor:pointer;overflow:hidden;position:relative}
 .pcard-img{aspect-ratio:3/4;overflow:hidden;background:#111;position:relative}
@@ -157,12 +137,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .pcard-collection.run{color:var(--run)}
 .pcard-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:4px;line-height:1.1}
 .pcard-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900}
-
-/* PROD HEADER */
 .prod-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
 .prod-count{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--grey);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:4px}
-
-/* PRODUCT DETAIL */
 .pd{margin-top:56px}
 .pd-gal{width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--black2);position:relative}
 .pd-gal img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
@@ -188,7 +164,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .sopt.sel{background:var(--white);color:var(--black);border-color:var(--white)}
 .sopt.run-style:hover{border-color:var(--run);color:var(--run)}
 .sopt.run-style.sel{background:var(--run);color:var(--black);border-color:var(--run)}
-/* COLOR SWATCHES */
 .color-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
 .color-lbl span{color:var(--white);margin-left:6px}
 .colors{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
@@ -198,7 +173,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .copt.run-style.sel{border-color:var(--run);box-shadow:0 0 0 2px var(--black),0 0 0 4px var(--run)}
 .copt[data-color="white"]{border-color:var(--border2)}
 .copt[data-color="white"].sel{border-color:var(--grey);box-shadow:0 0 0 2px var(--black),0 0 0 4px var(--grey)}
-
 .buy-btn{width:100%;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:background .15s;margin-bottom:10px}
 .buy-btn.shoot-buy{background:var(--white);color:var(--black)}
 .buy-btn.shoot-buy:hover{background:var(--off)}
@@ -208,20 +182,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .pd-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);font-size:13px}
 .pd-row span:first-child{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
 .pd-row span:last-child{color:var(--off)}
-
-/* SERVER STATUS BADGE */
 .server-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border2);color:var(--grey);margin-bottom:16px}
 .server-dot{width:6px;height:6px;border-radius:50%;background:var(--grey);flex-shrink:0}
 .server-badge.live .server-dot{background:#6fcf97}
 .server-badge.live{color:#6fcf97;border-color:rgba(111,207,151,.3)}
 .server-badge.err .server-dot{background:#eb5757}
 .server-badge.err{color:#eb5757;border-color:rgba(235,87,87,.3)}
-
-/* BROWSE BANNER */
 .browse-banner{background:var(--white);color:var(--black);padding:12px 18px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;position:relative;z-index:490}
 .browse-banner span{color:#555;font-weight:600;letter-spacing:.1em}
-
-/* NEWSLETTER */
 .nl-section{border-top:1px solid var(--border);background:var(--black2);padding:56px 18px}
 .nl-inner{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
 .nl-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:12px;display:flex;align-items:center;gap:10px}
@@ -241,16 +209,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .nl-msg{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;min-height:18px;margin-top:4px}
 .nl-msg.ok{color:#6fcf97}
 .nl-msg.err{color:#eb5757}
-
-/* BACK */
 .back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:24px;transition:color .15s,gap .18s;padding:0}
 .back:hover{color:var(--white);gap:12px}
-
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--white);color:var(--black);padding:12px 24px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;opacity:0;transition:opacity .22s,transform .22s;z-index:800;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* LEGAL */
 .legal{margin-top:56px;padding:44px 18px 64px;max-width:720px}
 .legal h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,10vw,80px);font-weight:900;line-height:.88;text-transform:uppercase;margin-bottom:36px}
 .legal h1 span{color:var(--grey);font-weight:400}
@@ -260,8 +222,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .legal-s ul{list-style:none}
 .legal-s ul li{font-size:14px;font-weight:300;line-height:1.8;color:var(--grey);padding:3px 0 3px 16px;position:relative}
 .legal-s ul li::before{content:'/';position:absolute;left:0;color:var(--white);font-weight:700}
-
-/* FOOTER */
 footer{border-top:1px solid var(--border);background:var(--black2)}
 .f-main{display:grid;grid-template-columns:1fr 1fr}
 .f-col{padding:32px 18px;border-bottom:1px solid var(--border)}
@@ -279,8 +239,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 .f-nav button.run-link:hover{color:var(--run)}
 .f-bot{border-top:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:5px}
 .f-bot p{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
-
-/* DESKTOP */
 @media(min-width:680px){
   nav{height:64px;padding:0 32px}
   .nav-logo{font-size:20px}
@@ -316,7 +274,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
 <div class="loading-screen" id="loading-screen">
   <div class="loading-logo">Aftermath</div>
   <div class="loading-spinner" id="loading-spinner"></div>
@@ -326,7 +283,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 
 <div class="toast" id="toast"></div>
 
-<!-- NAV -->
 <nav>
   <button class="nav-logo" onclick="go('home')">Aftermath</button>
   <div class="nav-desk" id="nav-desk">
@@ -344,7 +300,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
   <button class="mob-link" onclick="go('all');closeMenu()">All Products</button>
   <div class="mob-section-label">Collections</div>
@@ -357,12 +312,10 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <button class="mob-link" onclick="go('terms');closeMenu()">Terms &amp; Conditions</button>
 </div>
 
-<!-- BROWSE BANNER -->
 <div class="browse-banner">
   👀 Browse Only — <span>We're not selling yet. Sign up below and we'll email you when we launch.</span>
 </div>
 
-<!-- ══ HOME ══ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-img-bg">
@@ -389,20 +342,15 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       </div>
     </div>
   </div>
-
   <div class="mq">
     <div class="mq-inner" id="marquee-inner">
       <span>Aftermath Studio</span><span class="dot">✦</span><span>Shoot For It</span><span class="dot">✦</span><span>Run It Up</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Restocked For 2 Years</span><span class="dot">✦</span><span id="mq-count">5 Items Available</span><span class="dot">✦</span>
       <span>Aftermath Studio</span><span class="dot">✦</span><span>Shoot For It</span><span class="dot">✦</span><span>Run It Up</span><span class="dot">✦</span><span>Drop 001</span><span class="dot">✦</span><span>Restocked For 2 Years</span><span class="dot">✦</span><span>5 Items Available</span><span class="dot">✦</span>
     </div>
   </div>
-
-  <!-- COLLECTION SPLIT -->
   <div class="col-split" id="collections-anchor">
     <div class="col-hero shoot" onclick="go('shoot')">
-      <div class="col-hero-bg">
-        <img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048" alt="">
-      </div>
+      <div class="col-hero-bg"><img src="https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048" alt=""></div>
       <span class="col-hero-badge" id="shoot-badge">4 Items</span>
       <div class="col-hero-content">
         <div class="col-hero-eyebrow">Collection 01</div>
@@ -412,9 +360,7 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       </div>
     </div>
     <div class="col-hero run" onclick="go('run')">
-      <div class="col-hero-bg">
-        <img src="https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048" alt="" style="filter:grayscale(5%) sepia(20%) hue-rotate(5deg)">
-      </div>
+      <div class="col-hero-bg"><img src="https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048" alt="" style="filter:grayscale(5%) sepia(20%) hue-rotate(5deg)"></div>
       <span class="col-hero-badge" id="run-badge">1 Item</span>
       <div class="col-hero-content">
         <div class="col-hero-eyebrow">Collection 02</div>
@@ -424,160 +370,95 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       </div>
     </div>
   </div>
-
-  <!-- SHOOT FOR IT PREVIEW -->
   <div class="sec">
     <div class="col-sec-header">
       <div class="col-sec-bar shoot"></div>
-      <div>
-        <div class="col-sec-label shoot">Collection 01</div>
-        <div class="col-sec-name">Shoot For It</div>
-      </div>
+      <div><div class="col-sec-label shoot">Collection 01</div><div class="col-sec-name">Shoot For It</div></div>
       <div class="col-sec-count" id="home-shoot-count">4 Items</div>
     </div>
     <div class="pgrid" id="home-shoot-grid"></div>
   </div>
-
-  <!-- RUN IT UP SECTION -->
   <div class="sec" style="background:rgba(212,168,67,.03);border-top:1px solid rgba(212,168,67,.15)">
     <div class="col-sec-header" style="border-bottom-color:rgba(212,168,67,.2)">
       <div class="col-sec-bar run"></div>
-      <div>
-        <div class="col-sec-label run">Collection 02</div>
-        <div class="col-sec-name" style="color:var(--run)">Run It Up</div>
-      </div>
+      <div><div class="col-sec-label run">Collection 02</div><div class="col-sec-name" style="color:var(--run)">Run It Up</div></div>
       <div class="col-sec-count" id="home-run-count" style="color:var(--run)">1 Item</div>
     </div>
     <div class="pgrid" id="home-run-grid"></div>
   </div>
-
   <div class="nl-section">
     <div class="nl-inner">
       <div class="nl-left">
         <div class="nl-eyebrow">Coming Soon</div>
         <h2 class="nl-title">Be First<br><span class="dim">In Line</span></h2>
         <p class="nl-desc">We're not selling yet — but when we drop, you'll be the first to know. Sign up and we'll email you the second we go live.</p>
-        <div class="server-badge" id="server-status-home">
-          <div class="server-dot"></div>
-          <span>Connecting…</span>
-        </div>
+        <div class="server-badge" id="server-status-home"><div class="server-dot"></div><span>Connecting…</span></div>
       </div>
       <div class="nl-right">
         <div class="nl-form-wrap">
-          <div class="nl-field">
-            <label class="nl-label">Your Name</label>
-            <input class="nl-input" id="nl-name" type="text" placeholder="Enter your name" autocomplete="name">
-          </div>
-          <div class="nl-field">
-            <label class="nl-label">Email Address</label>
-            <input class="nl-input" id="nl-email" type="email" placeholder="Enter your email" autocomplete="email">
-          </div>
+          <div class="nl-field"><label class="nl-label">Your Name</label><input class="nl-input" id="nl-name" type="text" placeholder="Enter your name" autocomplete="name"></div>
+          <div class="nl-field"><label class="nl-label">Email Address</label><input class="nl-input" id="nl-email" type="email" placeholder="Enter your email" autocomplete="email"></div>
           <button class="nl-btn" id="nl-btn" onclick="nlSubmit()">Notify Me When We Launch</button>
           <p class="nl-msg" id="nl-msg"></p>
         </div>
       </div>
     </div>
   </div>
-
   <div id="hf"></div>
 </div>
 
-<!-- ══ ALL PRODUCTS ══ -->
 <div class="page" id="page-all">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <div class="prod-hdr">
-      <div>
-        <div class="sec-label">Shop</div>
-        <h1 class="sec-title">All <span class="dim">Products</span></h1>
-        <div class="prod-count" id="all-count">5 Items</div>
-      </div>
-    </div>
+    <div class="prod-hdr"><div><div class="sec-label">Shop</div><h1 class="sec-title">All <span class="dim">Products</span></h1><div class="prod-count" id="all-count">5 Items</div></div></div>
     <div style="margin-bottom:48px">
-      <div class="col-sec-header">
-        <div class="col-sec-bar shoot"></div>
-        <div><div class="col-sec-label shoot">Collection 01</div><div class="col-sec-name">Shoot For It</div></div>
-        <div class="col-sec-count" id="all-shoot-count">4 Items</div>
-      </div>
+      <div class="col-sec-header"><div class="col-sec-bar shoot"></div><div><div class="col-sec-label shoot">Collection 01</div><div class="col-sec-name">Shoot For It</div></div><div class="col-sec-count" id="all-shoot-count">4 Items</div></div>
       <div class="pgrid" id="all-shoot-grid"></div>
     </div>
     <div>
-      <div class="col-sec-header" style="border-bottom-color:rgba(212,168,67,.2)">
-        <div class="col-sec-bar run"></div>
-        <div><div class="col-sec-label run">Collection 02</div><div class="col-sec-name" style="color:var(--run)">Run It Up</div></div>
-        <div class="col-sec-count" id="all-run-count" style="color:var(--run)">1 Item</div>
-      </div>
+      <div class="col-sec-header" style="border-bottom-color:rgba(212,168,67,.2)"><div class="col-sec-bar run"></div><div><div class="col-sec-label run">Collection 02</div><div class="col-sec-name" style="color:var(--run)">Run It Up</div></div><div class="col-sec-count" id="all-run-count" style="color:var(--run)">1 Item</div></div>
       <div class="pgrid" id="all-run-grid"></div>
     </div>
   </div>
   <div id="af"></div>
 </div>
 
-<!-- ══ SHOOT FOR IT ══ -->
 <div class="page" id="page-shoot">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <div class="prod-hdr">
-      <div>
-        <div class="sec-label">Collection 01</div>
-        <h1 class="sec-title">Shoot <span class="dim">For It</span></h1>
-        <div class="prod-count" id="shoot-page-count">4 Items</div>
-      </div>
-    </div>
+    <div class="prod-hdr"><div><div class="sec-label">Collection 01</div><h1 class="sec-title">Shoot <span class="dim">For It</span></h1><div class="prod-count" id="shoot-page-count">4 Items</div></div></div>
     <div class="pgrid" id="shoot-grid"></div>
   </div>
   <div id="sf"></div>
 </div>
 
-<!-- ══ RUN IT UP ══ -->
 <div class="page" id="page-run">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <div class="prod-hdr" style="border-bottom-color:rgba(212,168,67,.2)">
-      <div>
-        <div class="sec-label" style="color:var(--run)">Collection 02</div>
-        <h1 class="sec-title"><span class="gold">Run</span> <span class="dim">It Up</span></h1>
-        <div class="prod-count" id="run-page-count">1 Item</div>
-      </div>
-    </div>
+    <div class="prod-hdr" style="border-bottom-color:rgba(212,168,67,.2)"><div><div class="sec-label" style="color:var(--run)">Collection 02</div><h1 class="sec-title"><span class="gold">Run</span> <span class="dim">It Up</span></h1><div class="prod-count" id="run-page-count">1 Item</div></div></div>
     <div class="pgrid" id="run-grid"></div>
   </div>
   <div id="rf"></div>
 </div>
 
-<!-- ══ KIDS ══ -->
 <div class="page" id="page-kids">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <div class="prod-hdr">
-      <div>
-        <div class="sec-label">Collection 01</div>
-        <h1 class="sec-title">Kids <span class="dim">Clothing</span></h1>
-        <div class="prod-count" id="kids-page-count">1 Item</div>
-      </div>
-    </div>
+    <div class="prod-hdr"><div><div class="sec-label">Collection 01</div><h1 class="sec-title">Kids <span class="dim">Clothing</span></h1><div class="prod-count" id="kids-page-count">1 Item</div></div></div>
     <div class="pgrid" id="kids-grid"></div>
   </div>
   <div id="kf"></div>
 </div>
 
-<!-- ══ ACCESSORIES ══ -->
 <div class="page" id="page-accessories">
   <div class="sec" style="margin-top:56px">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <div class="prod-hdr">
-      <div>
-        <div class="sec-label">Collection 01</div>
-        <h1 class="sec-title">Accessories</h1>
-        <div class="prod-count" id="acc-page-count">1 Item</div>
-      </div>
-    </div>
+    <div class="prod-hdr"><div><div class="sec-label">Collection 01</div><h1 class="sec-title">Accessories</h1><div class="prod-count" id="acc-page-count">1 Item</div></div></div>
     <div class="pgrid" id="acc-grid"></div>
   </div>
   <div id="acf"></div>
 </div>
 
-<!-- ══ PRODUCT DETAIL ══ -->
 <div class="page" id="page-product">
   <div class="pd">
     <div class="pd-gal-wrap">
@@ -612,7 +493,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <div id="pf"></div>
 </div>
 
-<!-- ══ PRIVACY ══ -->
 <div class="page" id="page-privacy">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -626,7 +506,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <div id="pvf"></div>
 </div>
 
-<!-- ══ TERMS ══ -->
 <div class="page" id="page-terms">
   <div class="legal">
     <button class="back" onclick="go('home')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
@@ -641,7 +520,6 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   <div id="tf"></div>
 </div>
 
-<!-- FOOTER TEMPLATE -->
 <template id="ftpl">
   <footer>
     <div class="f-main">
@@ -676,60 +554,114 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
 </template>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────
 const API = 'https://aftermathh.vtxgames.co.uk';
-
-// ── STATE ────────────────────────────────────────────────
 let PRODUCTS = [];
 let currentUrl = '';
-let serverOnline = false;
+
+// ── SIZE TOKEN SET ───────────────────────────────────────
+const SIZE_TOKENS = new Set(['XS','S','M','L','XL','2XL','3XL','4XL','5XL','XXL','XXXL','ONE SIZE','OSFA','ONE SIZE FITS ALL','ONE SIZE FITS MOST']);
+function looksLikeSize(s) { return SIZE_TOKENS.has((s||'').toUpperCase().trim()); }
+
+// Simple hex map for the frontend swap-fix path
+const CLIENT_HEX = {
+  'black':'#111111','jet black':'#0a0a0a','white':'#f5f5f5','natural':'#e8dcc8',
+  'sandshell':'#d4c9b0','sand':'#c8b99a','cream':'#f5f0e8','ivory':'#f8f4e8',
+  'grey':'#888888','gray':'#888888','heather grey':'#b0b0b0','heather gray':'#b0b0b0',
+  'sport grey':'#9a9a9a','charcoal':'#3a3a3a','dark heather':'#4a4a4a',
+  'dark grey':'#444444','graphite':'#4d4d4d','ash':'#b2b2b2','silver':'#c0c0c0',
+  'navy':'#1a1f3a','navy blue':'#1a1f3a','dark navy':'#0d1021',
+  'royal blue':'#2855a0','royal':'#2855a0','blue':'#2c5fa8','cobalt':'#0047ab',
+  'red':'#c0392b','maroon':'#6b0000','burgundy':'#800020','crimson':'#dc143c',
+  'pink':'#d4789a','hot pink':'#ff69b4','rose':'#c8788a',
+  'purple':'#6b3fa0','violet':'#8a2be2','lavender':'#b09fca','plum':'#8e4585',
+  'yellow':'#f9c83a','gold':'#d4a843','orange':'#d4621a','mustard':'#e3a820',
+  'brown':'#6b4226','tan':'#d2b48c','beige':'#f5f0dc','camel':'#c19a6b',
+  'green':'#2e7d32','forest green':'#2d5a27','teal':'#008080','khaki':'#c19a6b',
+  'olive':'#6b6b3a','army green':'#4b5320','military green':'#4a5240',
+};
+function clientHex(name) {
+  const k = (name||'').toLowerCase().trim();
+  if (CLIENT_HEX[k]) return CLIENT_HEX[k];
+  for (const [key,val] of Object.entries(CLIENT_HEX)) {
+    if (k.includes(key) || key.includes(k)) return val;
+  }
+  return '#555555';
+}
 
 // ── NORMALIZE PRODUCT ────────────────────────────────────
-// Ensures every product has a consistent shape regardless of server vs fallback format.
-// A "color" entry must be an object with: { name, hex, imgs (array), sizes (array) }
-// A "size" entry must be a plain string like "S", "M", "L".
+// Ensures consistent shape. Also detects and corrects Printify's swapped
+// color/size fields if the server cache is stale.
 function normalizeProduct(p) {
-  // Normalize colors: must be array of objects with name + hex
   let colors = [];
   if (Array.isArray(p.colors) && p.colors.length > 0) {
     colors = p.colors.map(c => {
-      // If it's already a proper color object with a hex value, keep it
       if (c && typeof c === 'object' && c.hex) {
         return {
           name: c.name || 'Default',
           hex: c.hex,
-          imgs: Array.isArray(c.imgs) && c.imgs.length > 0 ? c.imgs : (Array.isArray(p.imgs) ? p.imgs : [p.img].filter(Boolean)),
-          sizes: Array.isArray(c.sizes) && c.sizes.length > 0 ? c.sizes : null // null = fall back to product-level sizes
+          imgs: Array.isArray(c.imgs) && c.imgs.length > 0
+            ? c.imgs
+            : (Array.isArray(p.imgs) ? p.imgs : [p.img].filter(Boolean)),
+          sizes: Array.isArray(c.sizes) && c.sizes.length > 0 ? c.sizes : null
         };
       }
-      // If it's a string — it's actually a size that leaked into colors, discard it
       return null;
     }).filter(Boolean);
   }
 
-  // Normalize sizes: must be array of strings that are NOT hex colors
-  let sizes = [];
-  if (Array.isArray(p.sizes) && p.sizes.length > 0) {
-    sizes = p.sizes.filter(s => {
-      if (typeof s !== 'string') return false;
-      // Reject anything that looks like a hex color (#abc or #aabbcc)
-      if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s)) return false;
-      // Reject anything that looks like a CSS color keyword with no spaces (e.g. "black", "white") IF colors array already has items
-      // We only reject if this size value already appears as a color name
-      if (colors.length > 0 && colors.some(c => c.name.toLowerCase() === s.toLowerCase())) return false;
-      return true;
+  let sizes = Array.isArray(p.sizes) ? [...p.sizes] : [];
+
+  // ── DEFENSIVE SWAP FIX ───────────────────────────────
+  // Detects stale cache where Printify's color/size fields were swapped.
+  // If every "color" name is a size token AND every "size" is NOT a size token,
+  // the fields are backwards — reconstruct colors from URL segments in imgs.
+  const allColorsLookLikeSizes = colors.length > 0 && colors.every(c => looksLikeSize(c.name));
+  const sizesLookLikeColors = sizes.length > 0 && sizes.every(s => !looksLikeSize(String(s)));
+
+  if (allColorsLookLikeSizes && sizesLookLikeColors) {
+    const realColorNames = sizes;                // ['Black','Heather Grey','Navy',...]
+    const realSizes = colors.map(c => c.name);   // ['XS','S','M','L','XL','2XL','3XL']
+    const allImgs = Array.isArray(p.imgs) && p.imgs.length ? p.imgs : [p.img].filter(Boolean);
+
+    // Group images by URL color-segment: /mockup/{prod}/{segment}/{mockup}/
+    const segmentImgs = {};
+    const segmentOrder = [];
+    allImgs.forEach(src => {
+      const m = src.match(/\/mockup\/[^/]+\/(\d+)\//);
+      if (m) {
+        const seg = m[1];
+        if (!segmentImgs[seg]) { segmentImgs[seg] = []; segmentOrder.push(seg); }
+        segmentImgs[seg].push(src);
+      }
     });
+
+    colors = realColorNames.map((name, i) => ({
+      name,
+      hex: clientHex(name),
+      sizes: realSizes,
+      imgs: i < segmentOrder.length ? segmentImgs[segmentOrder[i]] : allImgs,
+    }));
+
+    // Black first
+    colors.sort((a, b) =>
+      (a.name.toLowerCase().includes('black') ? 0 : 1) -
+      (b.name.toLowerCase().includes('black') ? 0 : 1)
+    );
+    sizes = realSizes;
   }
+  // ── END SWAP FIX ─────────────────────────────────────
+
+  // Clean up sizes: reject hex strings
+  sizes = sizes.filter(s => typeof s === 'string' && !/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s));
 
   return { ...p, colors, sizes };
 }
 
 // ── INIT ─────────────────────────────────────────────────
 async function initApp() {
-  const errEl = document.getElementById('loading-err');
+  const errEl   = document.getElementById('loading-err');
   const retryBtn = document.getElementById('retry-btn');
-  const spinner = document.getElementById('loading-spinner');
-
+  const spinner  = document.getElementById('loading-spinner');
   errEl.style.display = 'none';
   retryBtn.style.display = 'none';
   spinner.style.display = 'block';
@@ -739,102 +671,86 @@ async function initApp() {
     if (!res.ok) throw new Error(`Server responded ${res.status}`);
     const data = await res.json();
     PRODUCTS = data.products.map(normalizeProduct);
-    serverOnline = true;
     setServerStatus(true);
   } catch (err) {
-    console.warn('Could not reach server, using fallback data:', err.message);
+    console.warn('Server unreachable, using fallback:', err.message);
     PRODUCTS = FALLBACK_PRODUCTS.map(normalizeProduct);
-    serverOnline = false;
     setServerStatus(false);
   }
 
-  // Update hero price tag with live first product
-  const heroProduct = PRODUCTS.find(p => p.id === 'hoodie') || PRODUCTS[0];
+  const heroProduct = PRODUCTS.find(p => p.collection === 'shoot') || PRODUCTS[0];
   if (heroProduct) {
     document.getElementById('hero-price').textContent = heroProduct.price;
     document.getElementById('hero-name').textContent = `${heroProduct.name} / ${heroProduct.sub}`;
   }
 
-  // Update item counts
   const shootProducts = PRODUCTS.filter(p => p.collection === 'shoot');
-  const runProducts = PRODUCTS.filter(p => p.collection === 'run');
-  const shootCount = shootProducts.length;
-  const runCount = runProducts.length;
-  const total = PRODUCTS.length;
+  const runProducts   = PRODUCTS.filter(p => p.collection === 'run');
+  const sc = shootProducts.length, rc = runProducts.length, tot = PRODUCTS.length;
+  const lbl = n => `${n} Item${n !== 1 ? 's' : ''}`;
 
-  const countLabel = (n) => `${n} Item${n !== 1 ? 's' : ''}`;
-  document.getElementById('mq-count').textContent = `${total} Items Available`;
-  document.getElementById('shoot-badge').textContent = countLabel(shootCount);
-  document.getElementById('run-badge').textContent = countLabel(runCount);
-  document.getElementById('home-shoot-count').textContent = countLabel(shootCount);
-  document.getElementById('home-run-count').textContent = countLabel(runCount);
-  document.getElementById('all-count').textContent = `${total} Items`;
-  document.getElementById('all-shoot-count').textContent = countLabel(shootCount);
-  document.getElementById('all-run-count').textContent = countLabel(runCount);
-  document.getElementById('shoot-page-count').textContent = `${shootCount} Items`;
-  document.getElementById('run-page-count').textContent = `${runCount} Items`;
-  document.getElementById('kids-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).length);
-  document.getElementById('acc-page-count').textContent = countLabel(PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).length);
+  document.getElementById('mq-count').textContent = `${tot} Items Available`;
+  document.getElementById('shoot-badge').textContent = lbl(sc);
+  document.getElementById('run-badge').textContent = lbl(rc);
+  document.getElementById('home-shoot-count').textContent = lbl(sc);
+  document.getElementById('home-run-count').textContent = lbl(rc);
+  document.getElementById('all-count').textContent = `${tot} Items`;
+  document.getElementById('all-shoot-count').textContent = lbl(sc);
+  document.getElementById('all-run-count').textContent = lbl(rc);
+  document.getElementById('shoot-page-count').textContent = `${sc} Items`;
+  document.getElementById('run-page-count').textContent = `${rc} Items`;
+  document.getElementById('kids-page-count').textContent = lbl(PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).length);
+  document.getElementById('acc-page-count').textContent = lbl(PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).length);
 
   renderGrids();
 
-  // Hide loading screen
   const ls = document.getElementById('loading-screen');
   ls.classList.add('hidden');
   setTimeout(() => ls.style.display = 'none', 400);
-
   checkNav();
 }
 
 function setServerStatus(online) {
   const el = document.getElementById('server-status-home');
   if (!el) return;
-  if (online) {
-    el.className = 'server-badge live';
-    el.innerHTML = '<div class="server-dot"></div><span>Server Online — Live Data</span>';
-  } else {
-    el.className = 'server-badge err';
-    el.innerHTML = '<div class="server-dot"></div><span>Server Offline — Cached Data</span>';
-  }
+  el.className = `server-badge ${online ? 'live' : 'err'}`;
+  el.innerHTML = `<div class="server-dot"></div><span>${online ? 'Server Online — Live Data' : 'Server Offline — Cached Data'}</span>`;
 }
 
-// ── RENDER CARD ──────────────────────────────────────────
+// ── CARD & GRIDS ─────────────────────────────────────────
 function card(p, idx) {
-  const col = p.collection;
   return `<div class="pcard" onclick="openProduct(${idx})">
     <div class="pcard-img">
       <img src="${p.img}" alt="${p.name}" loading="lazy">
-      <div class="pcard-badge ${col}">New Drop</div>
+      <div class="pcard-badge ${p.collection}">New Drop</div>
       <div class="pcard-ov"><button class="pcard-qv">View Product</button></div>
     </div>
     <div class="pcard-info">
-      <div class="pcard-collection ${col}">${p.collectionName}</div>
+      <div class="pcard-collection ${p.collection}">${p.collectionName}</div>
       <div class="pcard-name">${p.name} / ${p.sub}</div>
       <div class="pcard-price">${p.price}</div>
     </div>
   </div>`;
 }
 
-// ── RENDER GRIDS ─────────────────────────────────────────
 function renderGrids() {
-  const shootProducts = PRODUCTS.filter(p => p.collection === 'shoot');
-  const runProducts = PRODUCTS.filter(p => p.collection === 'run');
-  const allShoot = shootProducts.map(p => card(p, PRODUCTS.indexOf(p))).join('');
-  const allRun = runProducts.map(p => card(p, PRODUCTS.indexOf(p))).join('');
-  const acc = PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
-  const kids = PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
-
-  document.getElementById('home-shoot-grid').innerHTML = allShoot;
-  document.getElementById('home-run-grid').innerHTML = allRun;
-  document.getElementById('all-shoot-grid').innerHTML = allShoot;
-  document.getElementById('all-run-grid').innerHTML = allRun;
-  document.getElementById('shoot-grid').innerHTML = allShoot;
-  document.getElementById('run-grid').innerHTML = allRun;
-  document.getElementById('kids-grid').innerHTML = kids;
-  document.getElementById('acc-grid').innerHTML = acc;
+  const shootP = PRODUCTS.filter(p => p.collection === 'shoot');
+  const runP   = PRODUCTS.filter(p => p.collection === 'run');
+  const sh = shootP.map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  const ru = runP.map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  const ac = PRODUCTS.filter(p => p.categories && p.categories.includes('accessories')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  const ki = PRODUCTS.filter(p => p.categories && p.categories.includes('kids')).map(p => card(p, PRODUCTS.indexOf(p))).join('');
+  document.getElementById('home-shoot-grid').innerHTML = sh;
+  document.getElementById('home-run-grid').innerHTML = ru;
+  document.getElementById('all-shoot-grid').innerHTML = sh;
+  document.getElementById('all-run-grid').innerHTML = ru;
+  document.getElementById('shoot-grid').innerHTML = sh;
+  document.getElementById('run-grid').innerHTML = ru;
+  document.getElementById('kids-grid').innerHTML = ki;
+  document.getElementById('acc-grid').innerHTML = ac;
 }
 
-// ── OPEN PRODUCT ─────────────────────────────────────────
+// ── PRODUCT DETAIL ───────────────────────────────────────
 let currentProduct = null;
 
 function openProduct(idx) {
@@ -847,17 +763,13 @@ function openProduct(idx) {
   document.getElementById('pd-bread').textContent = p.name;
   document.getElementById('pd-desc').textContent = p.desc;
   document.getElementById('pd-meta').innerHTML = (p.meta || []).map(r =>
-    `<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`
-  ).join('');
+    `<div class="pd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
 
   const tag = document.getElementById('pd-col-tag');
   tag.textContent = `Collection ${p.collection === 'run' ? '02' : '01'} — ${p.collectionName}`;
   tag.className = `pd-collection-tag ${p.collection}`;
 
   const isRun = p.collection === 'run';
-
-  // ── Colors ─────────────────────────────────────────────
-  // Only show the color picker if there are 2 or more distinct colors with valid hex values
   const colorsWrap = document.getElementById('pd-colors-wrap');
   const colorsEl   = document.getElementById('pd-colors');
   const validColors = (p.colors || []).filter(c => c && c.hex);
@@ -865,12 +777,11 @@ function openProduct(idx) {
   if (validColors.length >= 2) {
     colorsWrap.style.display = 'block';
     colorsEl.innerHTML = validColors.map((c, i) =>
-      `<button class="copt${i === 0 ? ' sel' : ''}${isRun ? ' run-style' : ''}"
-        data-color="${(c.name || '').toLowerCase()}"
-        data-idx="${i}"
+      `<button class="copt${i===0?' sel':''}${isRun?' run-style':''}"
+        data-color="${(c.name||'').toLowerCase()}"
         style="background:${c.hex}"
         title="${c.name}"
-        onclick="pickColor(this, ${idx}, ${i})"></button>`
+        onclick="pickColor(this,${idx},${i})"></button>`
     ).join('');
     document.getElementById('pd-color-name').textContent = validColors[0].name;
     renderColorVariant(p, 0, isRun);
@@ -890,52 +801,39 @@ function renderColorVariant(p, colorIdx, isRun) {
   const validColors = (p.colors || []).filter(c => c && c.hex);
   const color = validColors[colorIdx] || null;
 
-  // Resolve images: prefer color-level imgs, fall back to product-level imgs, then single img
   const imgs = (color && Array.isArray(color.imgs) && color.imgs.length > 0)
     ? color.imgs
-    : (Array.isArray(p.imgs) && p.imgs.length > 0)
-      ? p.imgs
-      : [p.img].filter(Boolean);
+    : (Array.isArray(p.imgs) && p.imgs.length > 0 ? p.imgs : [p.img].filter(Boolean));
 
-  // Resolve sizes: prefer color-level sizes (if non-null and non-empty), fall back to product-level sizes
   const sizes = (color && Array.isArray(color.sizes) && color.sizes.length > 0)
     ? color.sizes
-    : (Array.isArray(p.sizes) && p.sizes.length > 0)
-      ? p.sizes
-      : [];
+    : (Array.isArray(p.sizes) && p.sizes.length > 0 ? p.sizes : []);
 
-  // Set main image
   document.getElementById('pd-img').src = imgs[0] || '';
-
-  // Render thumbnails
   document.getElementById('pd-thumbs').innerHTML = imgs.map((src, i) =>
-    `<div class="pd-thumb${i === 0 ? ' active' : ''}" onclick="switchImg(this,'${src}')">
+    `<div class="pd-thumb${i===0?' active':''}" onclick="switchImg(this,'${src}')">
       <img src="${src}" alt="" loading="lazy">
-    </div>`
-  ).join('');
+    </div>`).join('');
 
-  // Render sizes — guard against empty array
   if (sizes.length === 0) {
     document.getElementById('pd-sizes-wrap').style.display = 'none';
     document.getElementById('pd-sizes').innerHTML = '';
   } else {
     document.getElementById('pd-sizes-wrap').style.display = 'block';
-    const defaultSizeIdx = Math.min(p.defaultSize != null ? p.defaultSize : 3, sizes.length - 1);
+    const di = Math.min(p.defaultSize != null ? p.defaultSize : 3, sizes.length - 1);
     document.getElementById('pd-sizes').innerHTML = sizes.map((s, i) =>
-      `<button class="sopt${i === defaultSizeIdx ? ' sel' : ''}${isRun ? ' run-style' : ''}" onclick="pickSize(this)">${s}</button>`
+      `<button class="sopt${i===di?' sel':''}${isRun?' run-style':''}" onclick="pickSize(this)">${s}</button>`
     ).join('');
   }
 }
 
 function pickColor(btn, productIdx, colorIdx) {
   const p = PRODUCTS[productIdx];
-  const isRun = p.collection === 'run';
-  // Scope querySelector to the colors container, not the whole document
   document.querySelectorAll('#pd-colors .copt').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   const validColors = (p.colors || []).filter(c => c && c.hex);
-  document.getElementById('pd-color-name').textContent = (validColors[colorIdx] && validColors[colorIdx].name) || '';
-  renderColorVariant(p, colorIdx, isRun);
+  document.getElementById('pd-color-name').textContent = validColors[colorIdx]?.name || '';
+  renderColorVariant(p, colorIdx, p.collection === 'run');
 }
 
 function switchImg(el, src) {
@@ -956,31 +854,24 @@ function go(pg) {
     const s = document.getElementById(slots[pg]);
     if (s && !s.hasChildNodes()) s.appendChild(FT.content.cloneNode(true));
   }
-  closeMenu();
-  checkNav();
+  closeMenu(); checkNav();
 }
 
-// ── MOBILE MENU ──────────────────────────────────────────
 function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
-function closeMenu() { document.getElementById('mob-menu').classList.remove('open'); }
+function closeMenu()  { document.getElementById('mob-menu').classList.remove('open'); }
 
-// ── NAV ──────────────────────────────────────────────────
 function checkNav() {
   const desk = document.getElementById('nav-desk');
-  const mb = document.getElementById('menu-toggle');
+  const mb   = document.getElementById('menu-toggle');
   if (!desk) return;
   if (window.innerWidth >= 680) { desk.style.display = 'flex'; mb.style.display = 'none'; closeMenu(); }
   else { desk.style.display = 'none'; mb.style.display = 'block'; }
 }
 window.addEventListener('resize', checkNav);
 
-// ── BUY NOW ──────────────────────────────────────────────
 function buyNow() { showToast('Redirecting…'); setTimeout(() => window.open(currentUrl, '_blank'), 600); }
-
-// ── SIZE ─────────────────────────────────────────────────
 function pickSize(b) { document.querySelectorAll('.sopt').forEach(s => s.classList.remove('sel')); b.classList.add('sel'); }
 
-// ── TOAST ────────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
@@ -989,199 +880,97 @@ function showToast(msg) {
 
 // ── NEWSLETTER ───────────────────────────────────────────
 async function nlSubmit() {
-  const name = document.getElementById('nl-name').value.trim();
+  const name  = document.getElementById('nl-name').value.trim();
   const email = document.getElementById('nl-email').value.trim();
-  const msg = document.getElementById('nl-msg');
-  const btn = document.getElementById('nl-btn');
-
+  const msg   = document.getElementById('nl-msg');
+  const btn   = document.getElementById('nl-btn');
   if (!name || !email) { msg.textContent = 'Please fill in both fields.'; msg.className = 'nl-msg err'; return; }
-
-  btn.disabled = true;
-  btn.textContent = 'Signing up…';
+  btn.disabled = true; btn.textContent = 'Signing up…';
   msg.textContent = ''; msg.className = 'nl-msg';
-
   try {
-    const res = await fetch(`${API}/subscribe`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email })
-    });
+    const res  = await fetch(`${API}/subscribe`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name,email}) });
     const data = await res.json();
     if (res.ok) {
-      msg.textContent = "You're in! We'll email you when we launch.";
-      msg.className = 'nl-msg ok';
+      msg.textContent = "You're in! We'll email you when we launch."; msg.className = 'nl-msg ok';
       btn.textContent = 'Signed Up ✓';
       document.getElementById('nl-name').value = '';
       document.getElementById('nl-email').value = '';
     } else {
-      msg.textContent = data.error || 'Something went wrong.';
-      msg.className = 'nl-msg err';
-      btn.disabled = false;
-      btn.textContent = 'Notify Me When We Launch';
+      msg.textContent = data.error || 'Something went wrong.'; msg.className = 'nl-msg err';
+      btn.disabled = false; btn.textContent = 'Notify Me When We Launch';
     }
-  } catch (err) {
-    msg.textContent = 'Could not connect. Please try again.';
-    msg.className = 'nl-msg err';
-    btn.disabled = false;
-    btn.textContent = 'Notify Me When We Launch';
+  } catch {
+    msg.textContent = 'Could not connect. Please try again.'; msg.className = 'nl-msg err';
+    btn.disabled = false; btn.textContent = 'Notify Me When We Launch';
   }
 }
 
-// ── FALLBACK PRODUCT DATA ────────────────────────────────
+// ── FALLBACK DATA ────────────────────────────────────────
 const FALLBACK_PRODUCTS = [
-  {
-    id: 'hoodie',
-    name: 'Shoot Hoodie',
-    sub: 'Star Orbit',
-    price: '$38.90',
-    collection: 'shoot',
-    collectionName: 'Shoot For It',
-    img: 'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=1024',
-    imgs: [
-      'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048',
-      'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048',
-      'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048'
+  { id:'hoodie', name:'Shoot Hoodie', sub:'Star Orbit', price:'$38.90', collection:'shoot', collectionName:'Shoot For It',
+    img:'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=1024',
+    imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048'],
+    url:'https://aftermath-studio.printify.me/product/27222349/shoot-hoodie-star-orbit',
+    desc:'Heavyweight pullover hoodie with screen-printed Star Orbit graphic on 450gsm fleece. Double-layer hood without drawstrings, 1x1 ribbed cuffs and waistband, double needle stitching. Oversized fit. Drop 001 — restocked for 2 years from launch.',
+    sizes:['XS','S','M','L','XL','2XL','3XL'], defaultSize:3,
+    colors:[
+      {name:'Black',hex:'#111111',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048']},
+      {name:'Heather Grey',hex:'#b0b0b0',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123037/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123037/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123037/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048']},
+      {name:'Navy',hex:'#1a1f3a',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123039/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123039/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123039/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048']},
+      {name:'Sandshell',hex:'#d4c9b0',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123045/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123045/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123045/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048']},
+      {name:'White',hex:'#f5f5f5',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123046/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123046/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048','https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123046/112560/shoot-hoodie-star-orbit.jpg?camera_label=size-chart&revision=1772923322949&s=2048']},
     ],
-    url: 'https://aftermath-studio.printify.me/product/27222349/shoot-hoodie-star-orbit',
-    desc: 'Heavyweight pullover hoodie with screen-printed Star Orbit graphic on 450gsm fleece. Double-layer hood without drawstrings, 1x1 ribbed cuffs and waistband, double needle stitching. Oversized fit. Drop 001 — restocked for 2 years from launch.',
-    sizes: ['XS','S','M','L','XL','2XL','3XL'],
-    defaultSize: 3,
-    colors: [{ name: 'Black', hex: '#111111', sizes: ['XS','S','M','L','XL','2XL','3XL'], imgs: [
-      'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111882/shoot-hoodie-star-orbit.jpg?camera_label=front&revision=1772923322949&s=2048',
-      'https://images-api.printify.com/mockup/69ac753ab360648baa01f14f/123034/111883/shoot-hoodie-star-orbit.jpg?camera_label=back&revision=1772923322949&s=2048'
-    ]}],
-    defaultColor: 'Black',
-    meta: [
-      ['Type','Pullover Hoodie'],['Material','450gsm Fleece'],['Fit','Oversized'],['Color','Black'],
-      ['Print','Screen Printed'],['Care','Machine wash cold (max 30°C), gentle cycle; tumble dry low'],
-      ['Shipping (Standard)','from $9.99 — 2–5 business days (US)'],['Returns','30 days'],['Restock','2 Years From Launch']
+    defaultColor:'Black',
+    meta:[['Collection','Shoot For It'],['Colors','Black, Heather Grey, Navy, Sandshell, White'],['Sizes','XS · S · M · L · XL · 2XL · 3XL'],['Returns','30 days'],['Ships','Worldwide'],['Restock','2 Years From Launch']],
+    categories:['womens','mens','shoot'] },
+  { id:'tee', name:'Shoot T-Shirt', sub:'Shooting Star', price:'$10.88', collection:'shoot', collectionName:'Shoot For It',
+    img:'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=1024',
+    imgs:['https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=2048','https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97993/shoot-tshirt-shooting-star.jpg?camera_label=back&revision=1772923198245&s=2048'],
+    url:'https://aftermath-studio.printify.me/product/27225562/shoot-tshirt-shooting-star',
+    desc:'Classic fit tee with Shooting Star graphic. DTG + DTF printing on specially spun fibers. Tubular knit, ribbed collar, shoulder tape. Made in Bangladesh. Drop 001 — restocked for 2 years from launch.',
+    sizes:['XS','S','M','L','XL','2XL','3XL','4XL','5XL'], defaultSize:3,
+    colors:[{name:'White',hex:'#f5f5f5',sizes:['XS','S','M','L','XL','2XL','3XL','4XL','5XL'],imgs:['https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=2048','https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97993/shoot-tshirt-shooting-star.jpg?camera_label=back&revision=1772923198245&s=2048']}],
+    defaultColor:'White',
+    meta:[['Collection','Shoot For It'],['Colors','White, Black + more'],['Sizes','XS · S · M · L · XL · 2XL · 3XL · 4XL · 5XL'],['Returns','30 days'],['Ships','Worldwide'],['Restock','2 Years From Launch']],
+    categories:['womens','mens','shoot'] },
+  { id:'cap', name:'Shoot Cap', sub:'Star Orbit', price:'$16.06', collection:'shoot', collectionName:'Shoot For It',
+    img:'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=1024',
+    imgs:['https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=2048','https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55688/shoot-cap-star-orbit.jpg?camera_label=back&revision=1772922992290&s=2048','https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/112105/shoot-cap-star-orbit.jpg?camera_label=left&revision=1772922992290&s=2048','https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55685/shoot-cap-star-orbit.jpg?camera_label=right&revision=1772922992290&s=2048'],
+    url:'https://aftermath-studio.printify.me/product/27225852/shoot-cap-star-orbit',
+    desc:'Structured cap with embroidered Star Orbit graphic. 100% cotton, reinforced stitching. Adjustable strap, one size fits most. Drop 001 — restocked for 2 years from launch.',
+    sizes:['One Size'], defaultSize:0,
+    colors:[{name:'Black',hex:'#111111',sizes:['One Size'],imgs:['https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=2048','https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55688/shoot-cap-star-orbit.jpg?camera_label=back&revision=1772922992290&s=2048']}],
+    defaultColor:'Black',
+    meta:[['Collection','Shoot For It'],['Colors','Black, Khaki, White + more'],['Sizes','One Size'],['Returns','30 days'],['Ships','Worldwide'],['Restock','2 Years From Launch']],
+    categories:['accessories','shoot'] },
+  { id:'kids-tee', name:'Shoot T-Shirt for Kids', sub:'Star Orbit', price:'$14.83', collection:'shoot', collectionName:'Shoot For It',
+    img:'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=1024',
+    imgs:['https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=2048','https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3cba-6abe-9a01-caab47e1eade.png?revision=1772982619463&s=2048','https://images-api.printify.com/mockup/69accaa4620bb86945040b96/35036/120265/shoot-t-shirt-for-kids-star-orbit.jpg?camera_label=size-chart&revision=1772982619463&s=2048'],
+    url:'https://aftermath.vtxgames.co.uk/product/27227942/shoot-t-shirt-for-kids-star-orbit',
+    desc:"Kids tee with Star Orbit graphic. 100% cotton, meets all children's safety requirements. Drop 001 — restocked for 2 years from launch.",
+    sizes:['XS','S','M','L','XL'], defaultSize:1,
+    colors:[{name:'Black',hex:'#111111',sizes:['XS','S','M','L','XL'],imgs:['https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=2048','https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3cba-6abe-9a01-caab47e1eade.png?revision=1772982619463&s=2048']}],
+    defaultColor:'Black',
+    meta:[['Collection','Shoot For It'],['Colors','Black, Charcoal, Daisy + more'],['Sizes','XS · S · M · L · XL'],['Returns','30 days'],['Ships','Worldwide'],['Restock','2 Years From Launch']],
+    categories:['kids','shoot'] },
+  { id:'run-hoodie', name:'Run It Up Hoodie', sub:'Urban Streetwear', price:'$39.35', collection:'run', collectionName:'Run It Up',
+    img:'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=1024',
+    imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048'],
+    url:'https://aftermath.vtxgames.co.uk/product/27228220/run-it-up-hoodie-urban-streetwear',
+    desc:'Heavyweight pullover hoodie. Urban Streetwear graphic on 450gsm fleece. Double-layer hood, 1x1 ribbed cuffs, double needle stitching. Oversized fit. Drop 001 — restocked for 2 years from launch.',
+    sizes:['XS','S','M','L','XL','2XL','3XL'], defaultSize:3,
+    colors:[
+      {name:'Black',hex:'#111111',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048']},
+      {name:'Heather Grey',hex:'#b0b0b0',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123037/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123037/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123037/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048']},
+      {name:'Navy',hex:'#1a1f3a',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123039/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123039/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123039/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048']},
+      {name:'Sandshell',hex:'#d4c9b0',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123045/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123045/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123045/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048']},
+      {name:'White',hex:'#f5f5f5',sizes:['XS','S','M','L','XL','2XL','3XL'],imgs:['https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123046/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123046/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048','https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123046/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048']},
     ],
-    categories: ['womens','mens','shoot']
-  },
-  {
-    id: 'tee',
-    name: 'Shoot T-Shirt',
-    sub: 'Shooting Star',
-    price: '$10.88',
-    collection: 'shoot',
-    collectionName: 'Shoot For It',
-    img: 'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=1024',
-    imgs: [
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97993/shoot-tshirt-shooting-star.jpg?camera_label=back&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97994/shoot-tshirt-shooting-star.jpg?camera_label=front-collar-closeup&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/100615/shoot-tshirt-shooting-star.jpg?camera_label=folded&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/100620/shoot-tshirt-shooting-star.jpg?camera_label=person-2-back&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/100622/shoot-tshirt-shooting-star.jpg?camera_label=person-4-right-sleeve&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/100623/shoot-tshirt-shooting-star.jpg?camera_label=person-4-context&revision=1772923198245&s=2048'
-    ],
-    url: 'https://aftermath-studio.printify.me/product/27225562/shoot-tshirt-shooting-star',
-    desc: 'Classic fit tee with Shooting Star graphic. DTG + DTF printing on specially spun fibers. Tubular knit, ribbed collar, shoulder tape. Made in Bangladesh. Drop 001 — restocked for 2 years from launch.',
-    sizes: ['XS','S','M','L','XL','2XL','3XL','4XL','5XL'],
-    defaultSize: 3,
-    colors: [{ name: 'White', hex: '#f5f5f5', sizes: ['XS','S','M','L','XL','2XL','3XL','4XL','5XL'], imgs: [
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97992/shoot-tshirt-shooting-star.jpg?camera_label=front&revision=1772923198245&s=2048',
-      'https://images-api.printify.com/mockup/69aca368d9d11928ed089efc/38191/97993/shoot-tshirt-shooting-star.jpg?camera_label=back&revision=1772923198245&s=2048'
-    ]}],
-    defaultColor: 'White',
-    meta: [
-      ['Type','T-Shirt'],['Color','White'],['Fit','Classic'],['Print','DTG + DTF'],
-      ['Origin','Made in Bangladesh'],['Care','Machine wash cold (max 30°C); tumble dry low'],
-      ['Shipping (Standard)','from $4.75 — 2–5 business days (US)'],['Returns','30 days'],['Restock','2 Years From Launch']
-    ],
-    categories: ['womens','mens','shoot']
-  },
-  {
-    id: 'cap',
-    name: 'Shoot Cap',
-    sub: 'Star Orbit',
-    price: '$16.06',
-    collection: 'shoot',
-    collectionName: 'Shoot For It',
-    img: 'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=1024',
-    imgs: [
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=2048',
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55688/shoot-cap-star-orbit.jpg?camera_label=back&revision=1772922992290&s=2048',
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/112105/shoot-cap-star-orbit.jpg?camera_label=left&revision=1772922992290&s=2048',
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55685/shoot-cap-star-orbit.jpg?camera_label=right&revision=1772922992290&s=2048'
-    ],
-    url: 'https://aftermath-studio.printify.me/product/27225852/shoot-cap-star-orbit',
-    desc: 'Structured cap with embroidered Star Orbit graphic. 100% cotton, reinforced stitching. Adjustable strap, one size fits most. Drop 001 — restocked for 2 years from launch.',
-    sizes: ['One Size'],
-    defaultSize: 0,
-    colors: [{ name: 'Black', hex: '#111111', sizes: ['One Size'], imgs: [
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/53890/shoot-cap-star-orbit.jpg?camera_label=front&revision=1772922992290&s=2048',
-      'https://images-api.printify.com/mockup/69aca7c93d1db845920834d2/104278/55688/shoot-cap-star-orbit.jpg?camera_label=back&revision=1772922992290&s=2048'
-    ]}],
-    defaultColor: 'Black',
-    meta: [
-      ['Type','Structured Cap'],['Material','100% Cotton'],['Color','Black'],
-      ['Fit','Adjustable / One Size'],['Care','Spot clean only'],
-      ['Shipping (Standard)','from $7.49 — 5–15 business days (US)'],['Returns','30 days'],['Restock','2 Years From Launch']
-    ],
-    categories: ['accessories','shoot']
-  },
-  {
-    id: 'kids-tee',
-    name: 'Shoot T-Shirt for Kids',
-    sub: 'Star Orbit',
-    price: '$14.83',
-    collection: 'shoot',
-    collectionName: 'Shoot For It',
-    img: 'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=1024',
-    imgs: [
-      'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=2048',
-      'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3cba-6abe-9a01-caab47e1eade.png?revision=1772982619463&s=2048',
-      'https://images-api.printify.com/mockup/69accaa4620bb86945040b96/35036/120265/shoot-t-shirt-for-kids-star-orbit.jpg?camera_label=size-chart&revision=1772982619463&s=2048'
-    ],
-    url: 'https://aftermath.vtxgames.co.uk/product/27227942/shoot-t-shirt-for-kids-star-orbit',
-    desc: "Kids tee with Star Orbit graphic. 100% cotton, meets all children's safety requirements. Drop 001 — restocked for 2 years from launch.",
-    sizes: ['XS','S','M','L','XL'],
-    defaultSize: 1,
-    colors: [{ name: 'Black', hex: '#111111', sizes: ['XS','S','M','L','XL'], imgs: [
-      'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3d96-6d34-95a8-0eea887c3cf9.png?revision=1772982619463&s=2048',
-      'https://pfy-prod-products-mockup-media.s3.us-east-2.amazonaws.com/files/2026/03/20260308011609-1f11a8c6-3cba-6abe-9a01-caab47e1eade.png?revision=1772982619463&s=2048'
-    ]}],
-    defaultColor: 'Black',
-    meta: [
-      ['Type','Kids T-Shirt'],['Material','100% Cotton (solid)'],['Color','Black'],
-      ['Care','Machine wash warm (max 40°C); tumble dry medium'],
-      ['Shipping (Standard)','from $22.79 (US)'],['Returns','30 days'],['Restock','2 Years From Launch']
-    ],
-    categories: ['kids','shoot']
-  },
-  {
-    id: 'run-hoodie',
-    name: 'Run It Up Hoodie',
-    sub: 'Urban Streetwear',
-    price: '$39.35',
-    collection: 'run',
-    collectionName: 'Run It Up',
-    img: 'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=1024',
-    imgs: [
-      'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048',
-      'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048',
-      'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/112560/run-it-up-hoodie-urban-streetwear.jpg?camera_label=size-chart&revision=1772933845258&s=2048'
-    ],
-    url: 'https://aftermath.vtxgames.co.uk/product/27228220/run-it-up-hoodie-urban-streetwear',
-    desc: 'Heavyweight pullover hoodie. Urban Streetwear graphic on 450gsm fleece. Double-layer hood, 1x1 ribbed cuffs, double needle stitching. Oversized fit. Drop 001 — restocked for 2 years from launch.',
-    sizes: ['XS','S','M','L','XL','2XL','3XL'],
-    defaultSize: 3,
-    colors: [{ name: 'Black', hex: '#111111', sizes: ['XS','S','M','L','XL','2XL','3XL'], imgs: [
-      'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111882/run-it-up-hoodie-urban-streetwear.jpg?camera_label=front&revision=1772933845258&s=2048',
-      'https://images-api.printify.com/mockup/69acd2875ef4eca23b03a450/123034/111883/run-it-up-hoodie-urban-streetwear.jpg?camera_label=back&revision=1772933845258&s=2048'
-    ]}],
-    defaultColor: 'Black',
-    meta: [
-      ['Type','Pullover Hoodie'],['Material','450gsm Fleece'],['Fit','Oversized'],['Color','Black'],
-      ['Print','Screen Printed'],['Care','Machine wash cold (max 30°C), gentle cycle; tumble dry low'],
-      ['Shipping (Standard)','from $9.99 — 2–5 business days (US)'],['Returns','30 days'],['Restock','2 Years From Launch']
-    ],
-    categories: ['womens','mens','run']
-  }
+    defaultColor:'Black',
+    meta:[['Collection','Run It Up'],['Colors','Black, Heather Grey, Navy, Sandshell, White'],['Sizes','XS · S · M · L · XL · 2XL · 3XL'],['Returns','30 days'],['Ships','Worldwide'],['Restock','2 Years From Launch']],
+    categories:['womens','mens','run'] },
 ];
 
-// ── KICK OFF ─────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', initApp);
 </script>
 </body>
