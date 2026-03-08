@@ -188,6 +188,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;ali
 .sopt.sel{background:var(--white);color:var(--black);border-color:var(--white)}
 .sopt.run-style:hover{border-color:var(--run);color:var(--run)}
 .sopt.run-style.sel{background:var(--run);color:var(--black);border-color:var(--run)}
+/* COLOR SWATCHES */
+.color-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+.color-lbl span{color:var(--white);margin-left:6px}
+.colors{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.copt{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .15s;position:relative;flex-shrink:0;outline:none}
+.copt:hover{transform:scale(1.15)}
+.copt.sel{border-color:var(--white);box-shadow:0 0 0 2px var(--black),0 0 0 4px var(--white)}
+.copt.run-style.sel{border-color:var(--run);box-shadow:0 0 0 2px var(--black),0 0 0 4px var(--run)}
+/* Special treatment for white swatch so it's visible on dark bg */
+.copt[data-color="white"]{border-color:var(--border2)}
+.copt[data-color="white"].sel{border-color:var(--grey);box-shadow:0 0 0 2px var(--black),0 0 0 4px var(--grey)}
+
 .buy-btn{width:100%;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:background .15s;margin-bottom:10px}
 .buy-btn.shoot-buy{background:var(--white);color:var(--black)}
 .buy-btn.shoot-buy:hover{background:var(--off)}
@@ -586,6 +598,10 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
       <div class="pd-sub" id="pd-sub"></div>
       <div class="pd-price" id="pd-price"></div>
       <p class="pd-desc" id="pd-desc"></p>
+      <div id="pd-colors-wrap" style="display:none">
+        <div class="color-lbl">Color <span id="pd-color-name"></span></div>
+        <div class="colors" id="pd-colors"></div>
+      </div>
       <div id="pd-sizes-wrap">
         <div class="size-lbl">Select Size</div>
         <div class="sizes" id="pd-sizes"></div>
@@ -606,7 +622,7 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
     <div class="legal-s"><h2>2. How We Use It</h2><ul><li>Process and fulfil your orders</li><li>Send order updates and transactional emails</li><li>Respond to your enquiries</li><li>Send marketing with your consent</li><li>Improve our site and services</li><li>Meet legal obligations</li></ul></div>
     <div class="legal-s"><h2>3. Sharing</h2><p>We don't sell, trade or rent your data. We may share with trusted service providers helping run our business — under confidentiality agreements only.</p></div>
     <div class="legal-s"><h2>4. Cookies</h2><p>We use cookies to improve your experience. You can turn these off in your browser settings at any time.</p></div>
-    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at hello@aftermathstudio.co.</p></div>
+    <div class="legal-s"><h2>5. Your Rights</h2><p>You can access, update or delete any personal data we hold. Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="94fcf1f8f8fbd4f5f2e0f1e6f9f5e0fce7e0e1f0fdfbbaf7fb">[email&#160;protected]</a>.</p></div>
   </div>
   <div id="pvf"></div>
 </div>
@@ -660,7 +676,7 @@ footer{border-top:1px solid var(--border);background:var(--black2)}
   </footer>
 </template>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── CONFIG ───────────────────────────────────────────────
 const API = 'https://aftermathh.vtxgames.co.uk';
 
@@ -780,9 +796,12 @@ function renderGrids() {
 }
 
 // ── OPEN PRODUCT ─────────────────────────────────────────
+let currentProduct = null;
+
 function openProduct(idx) {
   const p = PRODUCTS[idx];
-  document.getElementById('pd-img').src = p.imgs[0];
+  currentProduct = p;
+
   document.getElementById('pd-name').textContent = p.name;
   document.getElementById('pd-sub').textContent = p.sub;
   document.getElementById('pd-price').textContent = p.price;
@@ -796,20 +815,65 @@ function openProduct(idx) {
   tag.textContent = `Collection ${p.collection === 'run' ? '02' : '01'} — ${p.collectionName}`;
   tag.className = `pd-collection-tag ${p.collection}`;
 
-  document.getElementById('pd-thumbs').innerHTML = p.imgs.map((src, i) =>
-    `<div class="pd-thumb${i===0?' active':''}" onclick="switchImg(this,'${src}')">
-      <img src="${src}" alt="" loading="lazy">
-    </div>`
-  ).join('');
-
   const isRun = p.collection === 'run';
-  document.getElementById('pd-sizes').innerHTML = p.sizes.map((s, i) =>
-    `<button class="sopt${i===p.defaultSize?' sel':''}${isRun?' run-style':''}" onclick="pickSize(this)">${s}</button>`
-  ).join('');
+
+  // ── Colors ─────────────────────────────────────────────
+  const colorsWrap = document.getElementById('pd-colors-wrap');
+  const colorsEl   = document.getElementById('pd-colors');
+
+  if (p.colors && p.colors.length > 1) {
+    colorsWrap.style.display = 'block';
+    colorsEl.innerHTML = p.colors.map((c, i) =>
+      `<button class="copt${i === 0 ? ' sel' : ''}${isRun ? ' run-style' : ''}"
+        data-color="${c.name.toLowerCase()}"
+        style="background:${c.hex}"
+        title="${c.name}"
+        onclick="pickColor(this, ${idx}, ${i})"></button>`
+    ).join('');
+    document.getElementById('pd-color-name').textContent = p.colors[0].name;
+    renderColorVariant(p, 0, isRun);
+  } else {
+    colorsWrap.style.display = 'none';
+    // Single color — just render the default imgs/sizes
+    renderColorVariant(p, 0, isRun);
+  }
 
   document.getElementById('buy-btn').className = `buy-btn ${p.collection}-buy`;
   currentUrl = p.url;
   go('product');
+}
+
+function renderColorVariant(p, colorIdx, isRun) {
+  const color = (p.colors && p.colors[colorIdx]) ? p.colors[colorIdx] : null;
+  const imgs  = (color && color.imgs.length) ? color.imgs : p.imgs;
+  const sizes = (color && color.sizes.length) ? color.sizes : p.sizes;
+
+  // Main image
+  document.getElementById('pd-img').src = imgs[0] || '';
+
+  // Thumbnails
+  document.getElementById('pd-thumbs').innerHTML = imgs.map((src, i) =>
+    `<div class="pd-thumb${i === 0 ? ' active' : ''}" onclick="switchImg(this,'${src}')">
+      <img src="${src}" alt="" loading="lazy">
+    </div>`
+  ).join('');
+
+  // Sizes
+  const defaultSizeIdx = Math.min(p.defaultSize || 3, Math.max(0, sizes.length - 1));
+  document.getElementById('pd-sizes').innerHTML = sizes.map((s, i) =>
+    `<button class="sopt${i === defaultSizeIdx ? ' sel' : ''}${isRun ? ' run-style' : ''}" onclick="pickSize(this)">${s}</button>`
+  ).join('');
+}
+
+function pickColor(btn, productIdx, colorIdx) {
+  const p = PRODUCTS[productIdx];
+  const isRun = p.collection === 'run';
+
+  document.querySelectorAll('.copt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('pd-color-name').textContent = p.colors[colorIdx].name;
+
+  renderColorVariant(p, colorIdx, isRun);
 }
 
 function switchImg(el, src) {
@@ -951,12 +1015,4 @@ const FALLBACK_PRODUCTS = [
     desc:'Heavyweight pullover hoodie. Urban Streetwear graphic on 450gsm fleece. Double-layer hood, 1x1 ribbed cuffs, double needle stitching. Oversized fit. Drop 001 — restocked for 2 years from launch.',
     sizes:['XS','S','M','L','XL','2XL','3XL'],defaultSize:3,
     meta:[['Type','Pullover Hoodie'],['Material','450gsm Fleece'],['Fit','Oversized'],['Color','Black'],['Print','Screen Printed'],['Care','Machine wash cold (max 30°C), gentle cycle; tumble dry low'],['Shipping (Standard)','from $9.99 — 2–5 business days (US)'],['Returns','30 days'],['Restock','2 Years From Launch']],
-    categories:['womens','mens','run']
-  }
-];
-
-// ── START ────────────────────────────────────────────────
-initApp();
-</script>
-</body>
-</html>
+    catego
