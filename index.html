@@ -61,6 +61,7 @@
     "gamePlatform": "Roblox",
     "url": "https://www.roblox.com/games/117028046402506",
     "image": "https://tr.rbxcdn.com/180DAY-a831d06738e05a3806082be371769372/768/432/Image/Webp/noFilter",
+    "datePublished": "2026",
     "genre": ["Fashion", "Avatar Customization", "Catalog Browser"],
     "applicationCategory": "Game",
     "operatingSystem": "Roblox",
@@ -82,7 +83,7 @@
     "mainEntity": [
       { "@type": "Question", "name": "What is FitHub?", "acceptedAnswer": { "@type": "Answer", "text": "FitHub is a free Roblox game where you can try on any avatar item from the Roblox catalog, create custom outfits, and purchase items directly inside the game." } },
       { "@type": "Question", "name": "Is FitHub free to play?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, FitHub is completely free to play on Roblox." } },
-      { "@type": "Question", "name": "What can I do in FitHub?", "acceptedAnswer": { "@type": "Answer", "text": "You can try any avatar item from the Roblox catalog, build and save outfits, buy items directly, and shop exclusive unreleased clothing at fithub-catalog.printify.me." } }
+      { "@type": "Question", "name": "What can I do in FitHub?", "acceptedAnswer": { "@type": "Answer", "text": "You can try any avatar item from the Roblox catalog, build and save outfits, and buy items directly." } }
     ]
   }
 ]
@@ -197,83 +198,6 @@ body {
   filter: brightness(0.95);
 }
 
-/* ── Clothing section ── */
-.clothing-section { width: 100%; }
-
-.clothing-heading {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 10px;
-  overflow: hidden;
-  text-decoration: none;
-  color: #fff;
-  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), border-color 0.18s, background 0.18s;
-}
-.product-card:hover {
-  transform: translateY(-3px) scale(1.02);
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.08);
-}
-.product-card:active { transform: scale(0.98); }
-
-/* 5th card centred in the grid */
-.product-card:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.product-img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-  background: rgba(255,255,255,0.03);
-}
-
-.product-info {
-  padding: 0.55rem 0.65rem 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.product-name {
-  font-size: 0.72rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.product-price {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.95);
-}
-
 /* ── Features ── */
 .feature-row {
   width: 100%;
@@ -347,47 +271,12 @@ body {
 .page > *:nth-child(6)  { animation-delay: 0.44s; }
 .page > *:nth-child(7)  { animation-delay: 0.52s; }
 .page > *:nth-child(8)  { animation-delay: 0.60s; }
-.page > *:nth-child(9)  { animation-delay: 0.68s; }
-.page > *:nth-child(10) { animation-delay: 0.76s; }
 </style>
 </head>
 <body>
 <div id="root"></div>
 
 <script type="text/babel">
-const products = [
-  {
-    name: "kcy Hoodie — Minimal Hoodie FitHub",
-    price: "$38.80",
-    img: "https://images-api.printify.com/mockup/69d4291b35e0201a81062638/123046/111882/kcy-hoodie-minimal-hoodie-fithub.jpg?camera_label=front&revision=1775511899104&s=400",
-    url: "https://fithub-catalog.printify.me/product/27825862/kcy-hoodie-minimal-hoodie-fithub"
-  },
-  {
-    name: "FitHub Logo Hoodie — Minimal Hoodie",
-    price: "$38.80",
-    img: "https://images-api.printify.com/mockup/69d4152b63272680810868a6/123046/111882/fithub-logo-hoodie-minimal-hoodie.jpg?camera_label=front&revision=1775507048365&s=400",
-    url: "https://fithub-catalog.printify.me/product/27823746/fithub-logo-hoodie-minimal-hoodie"
-  },
-  {
-    name: "Auveity Hoodie — Minimal Hoodie FitHub",
-    price: "$38.80",
-    img: "https://images-api.printify.com/mockup/69d41a75a920935bb00e2107/123046/111882/auveity-hoodie-minimal-hoodie-fithub.jpg?camera_label=front&revision=1775508285226&s=400",
-    url: "https://fithub-catalog.printify.me/product/27824363/auveity-hoodie-minimal-hoodie-fithub"
-  },
-  {
-    name: "jujusdesk Hoodie — Minimal Hoodie FitHub",
-    price: "$38.80",
-    img: "https://images-api.printify.com/mockup/69d41dca35e0201a81062432/123046/111882/jujusdesk-hoodie-minimal-hoodie-fithub.jpg?camera_label=front&revision=1775509108336&s=400",
-    url: "https://fithub-catalog.printify.me/product/27824570/jujusdesk-hoodie-minimal-hoodie-fithub"
-  },
-  {
-    name: "Fiori' Hoodie — Minimal Hoodie FitHub",
-    price: "$38.80",
-    img: "https://images-api.printify.com/mockup/69d41e618d7f40c7c8070e5e/123046/111882/fiori-hoodie-minimal-hoodie-fithub.jpg?camera_label=front&revision=1775509216543&s=400",
-    url: "https://fithub-catalog.printify.me/product/27824637/fiori-hoodie-minimal-hoodie-fithub"
-  },
-];
-
 const features = [
   { icon: "🛍️", label: "Try any avatar item from the full catalog" },
   { icon: "👕", label: "Create and save custom outfits" },
@@ -432,31 +321,6 @@ function App() {
         >
           🎮 Play FitHub Now
         </a>
-
-        <div className="divider" aria-hidden="true" />
-
-        <section className="clothing-section" aria-label="Unreleased clothing">
-          <p className="clothing-heading">Unreleased Clothing</p>
-          <div className="product-grid" role="list">
-            {products.map(p => (
-              <a
-                key={p.url}
-                href={p.url}
-                className="product-card"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="listitem"
-                aria-label={`${p.name} — ${p.price}`}
-              >
-                <img src={p.img} alt={p.name} className="product-img" loading="lazy" />
-                <div className="product-info">
-                  <span className="product-name">{p.name}</span>
-                  <span className="product-price">{p.price}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
 
         <div className="divider" aria-hidden="true" />
 
