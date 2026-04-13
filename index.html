@@ -198,6 +198,16 @@ body {
   filter: brightness(0.95);
 }
 
+.clothing-heading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 /* ── Features ── */
 .feature-row {
   width: 100%;
@@ -332,6 +342,45 @@ function App() {
             </div>
           ))}
         </div>
+
+        <div className="divider" aria-hidden="true" />
+
+        <section style={{width: '100%'}} aria-label="Partner games">
+          <p className="clothing-heading">Partner Games</p>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '0.6rem', width: '100%'}}>
+            {[
+              { name: 'kcy x FitHub', rank: 1, url: 'https://www.roblox.com/games/128240390850822/kcy-x-FitHub' },
+              { name: 'Auveity x FitHub', rank: 2, url: 'https://www.roblox.com/games/78468351443458/Auveity-x-FitHub' },
+              { name: 'jujusdesk x FitHub', rank: null, url: 'https://www.roblox.com/games/140506352741159/jujusdesk-x-FitHub' },
+              { name: 'CutestCloset x FitHub', rank: null, url: 'https://www.roblox.com/games/139334485707101/CutestCloset-x-FitHub' },
+              { name: "Fiori' x FitHub", rank: null, url: 'https://www.roblox.com/games/92169737253651/Fiori-x-FitHub' },
+            ].map(p => (
+              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', padding: '0.6rem 0.9rem', transition: 'background 0.18s, border-color 0.18s'}}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}
+              >
+                <span style={{fontSize: '0.85rem', fontWeight: 300, color: 'rgba(255,255,255,0.75)'}}>
+                  {p.name}
+                </span>
+                {p.rank === 1 && (
+                  <span style={{fontSize: '0.72rem', fontWeight: 600, color: '#FFD700', letterSpacing: '0.05em'}}>
+                    🥇 #1
+                  </span>
+                )}
+                {p.rank === 2 && (
+                  <span style={{fontSize: '0.72rem', fontWeight: 600, color: 'rgba(192,192,192,0.9)', letterSpacing: '0.05em'}}>
+                    🥈 #2
+                  </span>
+                )}
+                {p.rank === null && (
+                  <span style={{fontSize: '0.7rem', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.04em'}}>
+                    unranked
+                  </span>
+                )}
+              </a>
+            ))}
+          </div>
+        </section>
 
         <div className="socials">
           <a
