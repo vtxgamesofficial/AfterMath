@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitHub – Avatar Catalog & Outfit Creator</title>
+    
+    <meta name="description" content="Try any outfit from the Roblox avatar catalog. Create outfits and buy items directly.">
+    <meta name="theme-color" content="#000000">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { background: #000; font-family: 'Inter', sans-serif; min-height: 100vh; }
+        body { color: #fff; line-height: 1.5; }
+        
+        #root { display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 4rem 1.25rem; }
+
+        .page { max-width: 24rem; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+
+        .canvas-container { 
+            width: 100%; 
+            height: 300px; 
+            background: transparent; 
+            margin-bottom: 0.5rem;
+            cursor: grab;
+        }
+
+        .hero-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+        .play-btn { 
+            display: block; 
+            width: 100%; 
+            padding: 1rem; 
+            background: #fff; 
+            color: #000; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            text-align: center; 
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .play-btn:hover { background: #e5e5e5; }
+
+        .section-title { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: #666; 
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .list { width: 100%; display: flex; flex-direction: column; gap: 0.75rem; }
+        .list-item { font-size: 0.9rem; font-weight: 300; color: #ccc; }
+
+        .partner-link { 
+            width: 100%; 
+            padding: 0.75rem 1rem; 
+            background: #111; 
+            border: 1px solid #222; 
+            border-radius: 8px; 
+            color: #fff; 
+            text-decoration: none; 
+            display: flex; 
+            justify-content: space-between;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        .partner-link:hover { border-color: #444; }
+
+        .byline { margin-top: auto; font-size: 0.8rem; color: #444; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+    import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+
+    window.THREE = THREE;
+    window.OBJLoader = OBJLoader;
+    window.MTLLoader = MTLLoader;
+</script>
+
+<script type="text/babel">
+    const { useRef, useEffect } = React;
+
+    function LogoAnimation() {
+        const mountRef = useRef(null);
+
+        useEffect(() => {
+            if (!window.THREE) return;
+
+            const scene = new window.THREE.Scene();
+            const camera = new window.THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+            camera.position.z = 4;
+
+            const renderer = new window.THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(300, 300);
+            mountRef.current.appendChild(renderer.domElement);
+
+            const light = new window.THREE.DirectionalLight(0xffffff, 2);
+            light.position.set(2, 2, 5);
+            scene.add(light);
+            scene.add(new window.THREE.AmbientLight(0xffffff, 1));
+
+            let model;
+            const mtlLoader = new window.MTLLoader();
+            mtlLoader.load('./Meshy_AI_FitHub_Logo_0419003444_texture.mtl', (materials) => {
+                materials.preload();
+                const objLoader = new window.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load('./Meshy_AI_FitHub_Logo_0419003444_texture.obj', (object) => {
+                    model = object;
+                    model.scale.set(0.4, 0.4, 0.4);
+                    scene.add(model);
+                });
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (model) {
+                    model.rotation.y += 0.01;
+                    model.position.y = Math.sin(Date.now() * 0.002) * 0.1;
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            return () => {
+                renderer.dispose();
+                if (mountRef.current) mountRef.current.innerHTML = '';
+            };
+        }, []);
+
+        return <div className="canvas-container" ref={mountRef} />;
+    }
+
+    function App() {
+        const partners = [
+            { name: 'kcy x FitHub', url: 'https://www.roblox.com/games/128240390850822/kcy-x-FitHub' },
+            { name: 'Auveity x FitHub', url: 'https://www.roblox.com/games/78468351443458/Auveity-x-FitHub' },
+            { name: 'jujusdesk x FitHub', url: 'https://www.roblox.com/games/140506352741159/jujusdesk-x-FitHub' }
+        ];
+
+        return (
+            <main className="page">
+                <LogoAnimation />
+                
+                <h1 className="hero-title">FitHub</h1>
+
+                <a href="https://www.roblox.com/games/117028046402506/FitHub-Avatar-Catalog-Outfit-Creator" className="play-btn">
+                    Play FitHub
+                </a>
+
+                <div className="list">
+                    <p className="section-title">Features</p>
+                    <div className="list-item">Full catalog item access</div>
+                    <div className="list-item">Custom outfit creation</div>
+                    <div className="list-item">Direct in-game purchasing</div>
+                </div>
+
+                <div className="list">
+                    <p className="section-title">Partner Games</p>
+                    {partners.map(p => (
+                        <a key={p.name} href={p.url} className="partner-link">
+                            <span>{p.name}</span>
+                            <span>&rarr;</span>
+                        </a>
+                    ))}
+                </div>
+
+                <a href="https://www.roblox.com/users/1724761268/profile" className="byline">
+                    Developed by Eight25bro
+                </a>
+            </main>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
