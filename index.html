@@ -22,7 +22,7 @@ body {
   color: #fff;
 }
 
-/* 🔥 INTRO */
+/* INTRO */
 #intro {
   position: fixed;
   inset: 0;
@@ -31,12 +31,20 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .intro-text {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  opacity: 0;
+  animation: fade 0.8s forwards;
+}
+
+.intro-logo {
+  height: 4rem;
   opacity: 0;
   animation: fade 0.8s forwards;
 }
@@ -57,7 +65,7 @@ body {
   text-align:center;
 }
 
-/* ATLAS IMAGE */
+/* LOGO */
 .logo {
   height: 4rem;
   object-fit: contain;
@@ -126,34 +134,30 @@ body {
 <div id="root" style="display:none;">
   <main class="page">
 
-    <!-- 🔥 ATLAS IMAGE -->
     <img src="atlas-logo.png" class="logo" alt="ATLAS">
-
-    <p style="opacity:0.7;">Built by <strong>ATLAS Studios</strong></p>
 
     <img class="thumb" src="https://tr.rbxcdn.com/180DAY-a831d06738e05a3806082be371769372/768/432/Image/Webp/noFilter">
 
     <a href="https://www.roblox.com/games/117028046402506" class="play-btn" target="_blank">
-      🎮 Play ATLAS
+      🎮 Play ATLAS Catalog
     </a>
 
     <div class="divider"></div>
 
-    <!-- FEATURES -->
     <div class="feature">🛍️ Try any avatar item</div>
     <div class="feature">👕 Create outfits</div>
     <div class="feature">💸 Buy instantly</div>
 
     <div class="divider"></div>
 
-    <!-- 🔥 LEADERBOARD -->
+    <!-- LEADERBOARD -->
     <div>
       <p style="font-size:0.7rem; letter-spacing:0.1em; opacity:0.4;">TOP PARTNERS</p>
       <div class="leaderboard">
         <div class="lb-item"><span>🥇 kcy x ATLAS</span><span>#1</span></div>
         <div class="lb-item"><span>🥈 Auveity x ATLAS</span><span>#2</span></div>
         <div class="lb-item"><span>jujusdesk x ATLAS</span><span>-</span></div>
-        <div class="lb-item"><span>CutestCloset x ATLAS</span><span>-</span></div>
+        <div class="lb-item"><span>Fiori' x ATLAS</span><span>-</span></div>
       </div>
     </div>
 
@@ -172,10 +176,10 @@ const intro = document.getElementById("intro");
 const root = document.getElementById("root");
 
 const lines = [
-  "FitHub",
-  "was the beginning",
-  "Welcome to",
-  "ATLAS"
+  { type: "text", value: "FitHub" },
+  { type: "text", value: "was the beginning" },
+  { type: "text", value: "Welcome to" },
+  { type: "logo" }
 ];
 
 let i = 0;
@@ -190,7 +194,14 @@ function next() {
     return;
   }
 
-  intro.innerHTML = `<div class="intro-text">${lines[i]}</div>`;
+  const item = lines[i];
+
+  if (item.type === "logo") {
+    intro.innerHTML = `<img src="atlas-logo.png" class="intro-logo">`;
+  } else {
+    intro.innerHTML = `<div class="intro-text">${item.value}</div>`;
+  }
+
   i++;
   setTimeout(next, 900);
 }
