@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ATLAS – Avatar Catalog</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -22,39 +21,141 @@ body {
   color: #fff;
 }
 
-/* INTRO */
+/* ═══════════════════════
+   INTRO
+═══════════════════════ */
 #intro {
   position: fixed;
   inset: 0;
   background: #000;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* canvas glow */
+#intro-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* scanlines */
+#intro-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent, transparent 3px,
+    rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px
+  );
+  opacity: 0.4;
+  z-index: 2;
+}
+
+#intro-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  flex-direction: column;
-  gap: 1rem;
 }
 
-.intro-text {
-  font-size: 1.1rem;
-  letter-spacing: 0.2em;
+/* ── WORD ── */
+.i-word {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 16vw, 9rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  text-align: center;
+}
+.i-word.in  { animation: wIn  0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+.i-word.out { animation: wOut 0.35s ease-in forwards; }
+
+@keyframes wIn  {
+  from { opacity:0; transform:translateY(30px) scale(0.94); filter:blur(6px); }
+  to   { opacity:1; transform:translateY(0)    scale(1);    filter:blur(0); }
+}
+@keyframes wOut {
+  from { opacity:1; transform:scale(1);    filter:blur(0); }
+  to   { opacity:0; transform:scale(1.08); filter:blur(8px); }
+}
+
+/* ── RULE ── */
+.i-rule {
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  top: calc(50% + clamp(2.5rem, 9vw, 5rem));
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.6s ease;
+}
+.i-rule.open { width: min(28rem, 80vw); }
+
+/* ── SUB ── */
+.i-sub {
+  position: absolute;
+  top: calc(50% + clamp(3rem, 10.5vw, 6rem));
+  left:0; right:0;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   opacity: 0;
-  animation: fade 0.8s forwards;
+  transition: opacity 0.6s ease 0.4s;
+  color: rgba(255,255,255,0.45);
 }
+.i-sub.show { opacity:1; }
 
-.intro-logo {
-  height: 4rem;
+/* ── LOGO ── */
+#i-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
-  animation: fade 0.8s forwards;
+  pointer-events: none;
+}
+#i-logo img {
+  height: clamp(3.5rem, 14vw, 7rem);
+  filter: drop-shadow(0 0 40px rgba(37,99,235,0.7));
+}
+#i-logo.show { animation: logoIn 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+@keyframes logoIn {
+  0%   { opacity:0; transform:scale(0.6);  filter:blur(20px) brightness(3); }
+  60%  { opacity:1; transform:scale(1.04); filter:blur(0)     brightness(1.4); }
+  100% { opacity:1; transform:scale(1);    filter:blur(0)     brightness(1); }
 }
 
-@keyframes fade { to { opacity: 1; } }
+/* ── FLASH ── */
+#i-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+#i-flash.pop { animation: flashAnim 0.5s ease-out forwards; }
+@keyframes flashAnim { 0%{opacity:0.7;} 100%{opacity:0;} }
 
-.fade-out { animation: fadeOut 0.8s forwards; }
-@keyframes fadeOut { to { opacity:0; transform:scale(1.1);} }
+/* ── FINAL FADE ── */
+#intro.done { animation: introOut 0.9s ease forwards; }
+@keyframes introOut { to { opacity:0; transform:scale(1.05); } }
 
-/* PAGE */
+
+/* ═══════════════════════
+   PAGE
+═══════════════════════ */
 .page {
   max-width: 22rem;
   margin: auto;
@@ -65,20 +166,17 @@ body {
   text-align:center;
 }
 
-/* LOGO */
 .logo {
   height: 4rem;
   object-fit: contain;
 }
 
-/* THUMB */
 .thumb {
   width:100%;
   border-radius:10px;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 
-/* BUTTON */
 .play-btn {
   padding:1rem;
   border-radius:999px;
@@ -90,19 +188,16 @@ body {
 }
 .play-btn:hover { transform:scale(1.05); }
 
-/* FEATURES */
 .feature {
   font-size:0.85rem;
   opacity:0.6;
 }
 
-/* DIVIDER */
 .divider {
   height:1px;
   background:rgba(255,255,255,0.1);
 }
 
-/* LEADERBOARD */
 .leaderboard {
   display:flex;
   flex-direction:column;
@@ -117,20 +212,28 @@ body {
   font-size:0.8rem;
 }
 
-/* FOOTER */
 .footer {
   font-size:0.75rem;
   opacity:0.5;
 }
 </style>
 </head>
-
 <body>
 
-<!-- INTRO -->
-<div id="intro"></div>
+<!-- ═══ INTRO ═══ -->
+<div id="intro">
+  <canvas id="intro-bg"></canvas>
+  <div id="intro-scan"></div>
+  <div id="intro-stage">
+    <div class="i-word" id="i-word"></div>
+    <div class="i-rule" id="i-rule"></div>
+    <div class="i-sub"  id="i-sub"></div>
+    <div id="i-logo"><img src="atlas-logo.png" alt="ATLAS"></div>
+  </div>
+  <div id="i-flash"></div>
+</div>
 
-<!-- MAIN -->
+<!-- ═══ MAIN ═══ -->
 <div id="root" style="display:none;">
   <main class="page">
 
@@ -150,9 +253,8 @@ body {
 
     <div class="divider"></div>
 
-    <!-- LEADERBOARD -->
     <div>
-      <p style="font-size:0.7rem; letter-spacing:0.1em; opacity:0.4;">TOP PARTNERS</p>
+      <p style="font-size:0.7rem; letter-spacing:0.1em; opacity:0.4; margin-bottom:0.5rem;">TOP PARTNERS</p>
       <div class="leaderboard">
         <div class="lb-item"><span>🥇 kcy x ATLAS</span><span>#1</span></div>
         <div class="lb-item"><span>🥈 Auveity x ATLAS</span><span>#2</span></div>
@@ -170,44 +272,112 @@ body {
   </main>
 </div>
 
-<!-- INTRO SCRIPT -->
+
 <script>
-const intro = document.getElementById("intro");
-const root = document.getElementById("root");
+/* ── CANVAS GLOW ── */
+const canvas = document.getElementById('intro-bg');
+const ctx = canvas.getContext('2d');
 
-const lines = [
-  { type: "text", value: "FitHub" },
-  { type: "text", value: "was the beginning" },
-  { type: "text", value: "Welcome to" },
-  { type: "logo" }
-];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
 
-let i = 0;
+const particles = Array.from({length:60}, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  r: Math.random() * 1.8 + 0.3,
+  vx: (Math.random() - 0.5) * 0.3,
+  vy: (Math.random() - 0.5) * 0.3,
+  a: Math.random() * 0.5 + 0.15,
+}));
 
-function next() {
-  if (i >= lines.length) {
-    intro.classList.add("fade-out");
-    setTimeout(() => {
-      intro.remove();
-      root.style.display = "block";
-    }, 800);
-    return;
-  }
+let animating = true;
+function drawBg() {
+  if (!animating) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const grd = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width*0.6);
+  grd.addColorStop(0, 'rgba(37,99,235,0.18)');
+  grd.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
 
-  const item = lines[i];
+/* ── SEQUENCE ── */
+const wordEl  = document.getElementById('i-word');
+const ruleEl  = document.getElementById('i-rule');
+const subEl   = document.getElementById('i-sub');
+const logoEl  = document.getElementById('i-logo');
+const flashEl = document.getElementById('i-flash');
+const intro   = document.getElementById('intro');
 
-  if (item.type === "logo") {
-    intro.innerHTML = `<img src="atlas-logo.png" class="intro-logo">`;
-  } else {
-    intro.innerHTML = `<div class="intro-text">${item.value}</div>`;
-  }
+const delay = ms => new Promise(r => setTimeout(r, ms));
 
-  i++;
-  setTimeout(next, 900);
+function showWord(text, sub) {
+  return new Promise(async resolve => {
+    wordEl.textContent = text;
+    subEl.textContent  = sub || '';
+    wordEl.className = 'i-word';
+    ruleEl.className = 'i-rule';
+    subEl.className  = 'i-sub';
+    void wordEl.offsetWidth;
+
+    wordEl.classList.add('in');
+    if (sub) {
+      await delay(200);
+      ruleEl.classList.add('open');
+      subEl.classList.add('show');
+    }
+
+    await delay(sub ? 1100 : 800);
+
+    wordEl.classList.remove('in');
+    wordEl.classList.add('out');
+    ruleEl.classList.remove('open');
+    subEl.classList.remove('show');
+
+    await delay(380);
+    wordEl.textContent = '';
+    resolve();
+  });
 }
 
-next();
-</script>
+async function run() {
+  await delay(400);
+  await showWord('FitHub');
+  await delay(100);
+  await showWord('was the beginning', '— a new era awaits');
+  await delay(100);
+  await showWord('Welcome to');
+  await delay(80);
 
+  flashEl.classList.add('pop');
+  await delay(120);
+
+  logoEl.classList.add('show');
+  await delay(2600);
+
+  intro.classList.add('done');
+  await delay(900);
+
+  animating = false;
+  intro.remove();
+  document.getElementById('root').style.display = 'block';
+}
+
+run();
+</script>
 </body>
 </html>
