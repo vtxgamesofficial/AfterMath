@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS – Intro</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+/* ─── CANVAS GLOW LAYER ─── */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── MAIN STAGE ─── */
+#stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── WORD ─── */
+.word {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 16vw, 9rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: none;
+  text-align: center;
+}
+
+.word.visible {
+  animation: wordIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.word.exit {
+  animation: wordOut 0.35s ease-in forwards;
+}
+
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.94); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+}
+
+@keyframes wordOut {
+  from { opacity: 1; transform: scale(1);    filter: blur(0); }
+  to   { opacity: 0; transform: scale(1.08); filter: blur(8px); }
+}
+
+/* ─── THIN RULE ─── */
+.rule {
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  top: calc(50% + clamp(2.5rem, 9vw, 5rem));
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.6s ease;
+}
+
+.rule.open { width: min(28rem, 80vw); }
+
+/* ─── SUBTITLE ─── */
+.sub {
+  position: absolute;
+  top: calc(50% + clamp(3rem, 10.5vw, 6rem));
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.4s;
+  color: rgba(255,255,255,0.45);
+}
+
+.sub.visible { opacity: 1; }
+
+/* ─── LOGO REVEAL ─── */
+#logo-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#logo-wrap img {
+  height: clamp(3.5rem, 14vw, 7rem);
+  filter: drop-shadow(0 0 40px rgba(37,99,235,0.7));
+}
+
+#logo-wrap.visible {
+  animation: logoIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes logoIn {
+  0%   { opacity: 0; transform: scale(0.6);  filter: blur(20px) brightness(3); }
+  60%  { opacity: 1; transform: scale(1.04); filter: blur(0)     brightness(1.4); }
+  100% { opacity: 1; transform: scale(1);    filter: blur(0)     brightness(1); }
+}
+
+/* ─── FLASH ─── */
+#flash {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+#flash.pop {
+  animation: flashAnim 0.5s ease-out forwards;
+}
+
+@keyframes flashAnim {
+  0%   { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* ─── FINAL FADE OUT ─── */
+#stage.fade-out, #bg.fade-out {
+  animation: finalOut 0.9s ease forwards;
+}
+
+@keyframes finalOut {
+  to { opacity: 0; transform: scale(1.06); }
+}
+
+/* ─── SCANLINES overlay ─── */
+#scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.12) 3px,
+    rgba(0,0,0,0.12) 4px
+  );
+  opacity: 0.4;
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+<div id="scanlines"></div>
+
+<div id="stage">
+  <div class="word" id="word"></div>
+  <div class="rule" id="rule"></div>
+  <div class="sub"  id="sub"></div>
+  <div id="logo-wrap">
+    <img src="atlas-logo.png" alt="ATLAS">
+  </div>
+</div>
+
+<div id="flash"></div>
+
+<script>
+/* ── CANVAS PARTICLE GLOW ── */
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = Array.from({length: 60}, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  r: Math.random() * 1.8 + 0.3,
+  vx: (Math.random() - 0.5) * 0.3,
+  vy: (Math.random() - 0.5) * 0.3,
+  a: Math.random() * 0.5 + 0.15,
+}));
+
+function drawBg() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Radial glow centre
+  const grd = ctx.createRadialGradient(
+    canvas.width/2, canvas.height/2, 0,
+    canvas.width/2, canvas.height/2, canvas.width * 0.6
+  );
+  grd.addColorStop(0,   'rgba(37,99,235,0.18)');
+  grd.addColorStop(0.5, 'rgba(0,0,0,0)');
+  grd.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* ── SEQUENCE ── */
+const wordEl  = document.getElementById('word');
+const ruleEl  = document.getElementById('rule');
+const subEl   = document.getElementById('sub');
+const logoWrap = document.getElementById('logo-wrap');
+const flash   = document.getElementById('flash');
+const stage   = document.getElementById('stage');
+const bg      = document.getElementById('bg');
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function showWord(text, sub = '') {
+  return new Promise(async resolve => {
+    wordEl.textContent = text;
+    subEl.textContent  = sub;
+    wordEl.className = 'word';
+    ruleEl.className = 'rule';
+    subEl.className  = 'sub';
+
+    // force reflow
+    void wordEl.offsetWidth;
+
+    wordEl.classList.add('visible');
+
+    if (sub) {
+      await delay(200);
+      ruleEl.classList.add('open');
+      subEl.classList.add('visible');
+    }
+
+    await delay(sub ? 1100 : 800);
+
+    wordEl.classList.remove('visible');
+    wordEl.classList.add('exit');
+    ruleEl.classList.remove('open');
+    subEl.classList.remove('visible');
+
+    await delay(380);
+    wordEl.textContent = '';
+    resolve();
+  });
+}
+
+async function run() {
+  await delay(400);
+
+  await showWord('FitHub');
+  await delay(120);
+  await showWord('was the beginning', '— a new era awaits');
+  await delay(120);
+  await showWord('Welcome to');
+  await delay(80);
+
+  // Flash before logo
+  flash.classList.add('pop');
+  await delay(120);
+
+  logoWrap.classList.add('visible');
+  await delay(2600);
+
+  // Fade everything out
+  stage.classList.add('fade-out');
+  bg.classList.add('fade-out');
+  await delay(900);
+
+  // Hand off to main page if embedded, otherwise just blank
+  if (typeof window.onIntroComplete === 'function') window.onIntroComplete();
+}
+
+run();
+</script>
+</body>
+</html>
