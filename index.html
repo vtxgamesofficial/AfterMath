@@ -4,21 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ATLAS – Avatar Catalog Engine</title>
-
-<meta name="description" content="ATLAS is a next-generation Roblox catalog engine. Try any avatar item, build outfits, and purchase instantly.">
-<meta name="author" content="ATLAS Studios">
+<title>ATLAS – Avatar Catalog</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
+html {
+  background: #000;
+  background-image: linear-gradient(to top right, #2563eb33, transparent, #ffffff18);
+  background-attachment: fixed;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background: #000;
   color: #fff;
-  overflow-x: hidden;
 }
 
 /* 🔥 INTRO */
@@ -33,116 +34,139 @@ body {
 }
 
 .intro-text {
-  font-size: 1.4rem;
-  letter-spacing: 0.25em;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0;
-  animation: fadeText 0.8s forwards;
+  animation: fade 0.8s forwards;
 }
 
-@keyframes fadeText {
-  to { opacity: 1; }
-}
+@keyframes fade { to { opacity: 1; } }
 
-.fade-out {
-  animation: fadeOut 0.8s forwards;
-}
+.fade-out { animation: fadeOut 0.8s forwards; }
+@keyframes fadeOut { to { opacity:0; transform:scale(1.1);} }
 
-@keyframes fadeOut {
-  to { opacity: 0; transform: scale(1.1); }
-}
-
-/* 🔥 MAIN PAGE */
+/* PAGE */
 .page {
   max-width: 22rem;
   margin: auto;
   padding: 6rem 1.2rem;
-  text-align: center;
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+  text-align:center;
 }
 
+/* ATLAS IMAGE */
 .logo {
   height: 4rem;
-  margin-bottom: 1rem;
+  object-fit: contain;
 }
 
+/* THUMB */
 .thumb {
-  width: 100%;
-  border-radius: 12px;
-  margin: 1rem 0;
+  width:100%;
+  border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 
+/* BUTTON */
 .play-btn {
-  display: block;
-  margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 999px;
-  background: #fff;
-  color: #000;
-  font-weight: 700;
-  text-decoration: none;
-  transition: 0.2s;
+  padding:1rem;
+  border-radius:999px;
+  background:#fff;
+  color:#000;
+  font-weight:700;
+  text-decoration:none;
+  transition:0.2s;
 }
-.play-btn:hover {
-  transform: scale(1.05);
-}
+.play-btn:hover { transform:scale(1.05); }
 
-.info-text {
-  opacity: 0.7;
-  font-size: 0.9rem;
-}
-
+/* FEATURES */
 .feature {
-  margin: 0.6rem 0;
-  opacity: 0.6;
+  font-size:0.85rem;
+  opacity:0.6;
 }
 
+/* DIVIDER */
 .divider {
-  height: 1px;
-  background: #222;
-  margin: 1.5rem 0;
+  height:1px;
+  background:rgba(255,255,255,0.1);
 }
 
-.small {
-  font-size: 0.75rem;
-  opacity: 0.4;
+/* LEADERBOARD */
+.leaderboard {
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.lb-item {
+  display:flex;
+  justify-content:space-between;
+  background:rgba(255,255,255,0.05);
+  padding:0.6rem;
+  border-radius:8px;
+  font-size:0.8rem;
+}
+
+/* FOOTER */
+.footer {
+  font-size:0.75rem;
+  opacity:0.5;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 INTRO -->
+<!-- INTRO -->
 <div id="intro"></div>
 
-<!-- 🔥 MAIN -->
+<!-- MAIN -->
 <div id="root" style="display:none;">
   <main class="page">
 
-    <h1 style="font-size:1.2rem; letter-spacing:0.2em;">ATLAS</h1>
-    <p class="info-text">Built by <strong>ATLAS Studios</strong></p>
+    <!-- 🔥 ATLAS IMAGE -->
+    <img src="atlas-logo.png" class="logo" alt="ATLAS">
+
+    <p style="opacity:0.7;">Built by <strong>ATLAS Studios</strong></p>
 
     <img class="thumb" src="https://tr.rbxcdn.com/180DAY-a831d06738e05a3806082be371769372/768/432/Image/Webp/noFilter">
 
     <a href="https://www.roblox.com/games/117028046402506" class="play-btn" target="_blank">
-      🚀 Launch ATLAS Engine
+      🎮 Play ATLAS
     </a>
 
     <div class="divider"></div>
 
-    <div class="feature">🧠 Full avatar catalog access</div>
-    <div class="feature">🎯 Build outfits in real-time</div>
-    <div class="feature">⚡ Instant purchase system</div>
+    <!-- FEATURES -->
+    <div class="feature">🛍️ Try any avatar item</div>
+    <div class="feature">👕 Create outfits</div>
+    <div class="feature">💸 Buy instantly</div>
 
     <div class="divider"></div>
 
-    <p class="small">
-      ATLAS © 2026 — A product by ATLAS Studios
+    <!-- 🔥 LEADERBOARD -->
+    <div>
+      <p style="font-size:0.7rem; letter-spacing:0.1em; opacity:0.4;">TOP PARTNERS</p>
+      <div class="leaderboard">
+        <div class="lb-item"><span>🥇 kcy x ATLAS</span><span>#1</span></div>
+        <div class="lb-item"><span>🥈 Auveity x ATLAS</span><span>#2</span></div>
+        <div class="lb-item"><span>jujusdesk x ATLAS</span><span>-</span></div>
+        <div class="lb-item"><span>CutestCloset x ATLAS</span><span>-</span></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="footer">
+      ATLAS © 2026 — Made by <strong>Eight25bro</strong>
     </p>
 
   </main>
 </div>
 
-<!-- 🔥 INTRO SCRIPT -->
+<!-- INTRO SCRIPT -->
 <script>
 const intro = document.getElementById("intro");
 const root = document.getElementById("root");
@@ -156,25 +180,22 @@ const lines = [
 
 let i = 0;
 
-function nextLine() {
+function next() {
   if (i >= lines.length) {
     intro.classList.add("fade-out");
-
     setTimeout(() => {
       intro.remove();
       root.style.display = "block";
     }, 800);
-
     return;
   }
 
   intro.innerHTML = `<div class="intro-text">${lines[i]}</div>`;
   i++;
-
-  setTimeout(nextLine, 900);
+  setTimeout(next, 900);
 }
 
-nextLine();
+next();
 </script>
 
 </body>
