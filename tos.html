@@ -1,223 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Clothing Game</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 40px;
-            text-align: center;
-            color: white;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section h2 {
-            color: #764ba2;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #f093fb;
-        }
-        
-        .section p {
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        
-        .section ul {
-            margin-left: 25px;
-            line-height: 2;
-            color: #555;
-        }
-        
-        .section ul li {
-            margin-bottom: 8px;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #f5576c;
-            margin: 20px 0;
-        }
-        
-        .highlight-box p {
-            margin: 0;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            border-top: 1px solid #e9ecef;
-        }
-        
-        .footer p {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .icon {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service - ATLAS</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  background: #000;
+  background-image: linear-gradient(to top right, #2563eb33, transparent, #ffffff18);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #fff 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header p {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.section p {
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.section ul {
+  margin-left: 1.5rem;
+  line-height: 2;
+  color: rgba(255,255,255,0.65);
+}
+
+.section ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.highlight-box {
+  background: rgba(37,99,235,0.15);
+  border-left: 3px solid #2563eb;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.25rem 0;
+}
+
+.highlight-box p {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 1rem 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer p {
+  font-size: 0.75rem;
+  opacity: 0.4;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 1.25rem;
+  }
+  
+  .section h2 {
+    font-size: 1.25rem;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>👗 Terms of Service</h1>
-            <p>Clothing Game - Last Updated: 2024</p>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <h2><span class="icon">📋</span>1. Acceptance of Terms</h2>
-                <p>By accessing and playing our Clothing Game on Roblox, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not access or play the game.</p>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">👕</span>2. Game Content & Clothing</h2>
-                <p>Our game provides virtual clothing items and fashion-related content. Please note:</p>
-                <ul>
-                    <li>All clothing items are virtual and have no real-world value</li>
-                    <li>Clothing designs are for in-game use only</li>
-                    <li>We reserve the right to modify or remove any clothing items at any time</li>
-                    <li>You may not copy, reproduce, or distribute our clothing designs outside the game</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">🎮</span>3. User Conduct</h2>
-                <p>When playing our game, you agree to:</p>
-                <ul>
-                    <li>Follow all Roblox Terms of Service and Community Standards</li>
-                    <li>Not exploit bugs, glitches, or cheats</li>
-                    <li>Not harass, bully, or discriminate against other players</li>
-                    <li>Not use inappropriate language or display offensive content</li>
-                    <li>Not impersonate staff members or other players</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">💰</span>4. Virtual Items & Purchases</h2>
-                <p>Any in-game purchases or virtual items are subject to Roblox's policies:</p>
-                <ul>
-                    <li>All purchases are final and non-refundable</li>
-                    <li>Virtual items cannot be exchanged for real currency</li>
-                    <li>We are not responsible for lost items due to account issues</li>
-                </ul>
-                <div class="highlight-box">
-                    <p>⚠️ Important: Never share your account credentials with anyone. We will never ask for your password.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">🔒</span>5. Privacy & Data</h2>
-                <p>We respect your privacy and comply with Roblox's data policies:</p>
-                <ul>
-                    <li>We do not collect personal information beyond what Roblox provides</li>
-                    <li>Game data is stored securely on Roblox servers</li>
-                    <li>We do not share your information with third parties</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">⚖️</span>6. Intellectual Property</h2>
-                <p>All game content, including but not limited to:</p>
-                <ul>
-                    <li>Clothing designs and textures</li>
-                    <li>Game mechanics and systems</li>
-                    <li>Visual assets and graphics</li>
-                    <li>Scripts and code</li>
-                </ul>
-                <p>Are the property of the game creators and protected by intellectual property laws.</p>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">🚫</span>7. Prohibited Activities</h2>
-                <p>The following activities are strictly prohibited:</p>
-                <ul>
-                    <li>Using exploits, hacks, or third-party tools</li>
-                    <li>Attempting to disrupt game servers or services</li>
-                    <li>Creating multiple accounts to circumvent bans</li>
-                    <li>Selling or trading accounts</li>
-                    <li>Engaging in real-money trading of virtual items</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">🔧</span>8. Updates & Changes</h2>
-                <p>We reserve the right to update these Terms of Service at any time. Changes will be effective immediately upon posting. Continued use of the game constitutes acceptance of any modifications.</p>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">📧</span>9. Contact Information</h2>
-                <p>If you have questions about these Terms of Service, please contact us through:</p>
-                <ul>
-                    <li>Roblox group messages</li>
-                    <li>Our official social media channels</li>
-                    <li>In-game support systems</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2><span class="icon">✅</span>10. Agreement</h2>
-                <p>By playing our Clothing Game, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2024 Clothing Game. All rights reserved.</p>
-            <p>Powered by Roblox Corporation</p>
-        </div>
+
+<div class="container">
+  <div class="header">
+    <h1>Terms of Service</h1>
+    <p>ATLAS Avatar Catalog - Last Updated: 2024</p>
+  </div>
+  
+  <div class="content">
+    <div class="section">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing and playing ATLAS on Roblox, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not access or play the game.</p>
     </div>
+    
+    <div class="section">
+      <h2>2. Game Content & Avatar Items</h2>
+      <p>ATLAS provides virtual avatar items and catalog-related content. Please note:</p>
+      <ul>
+        <li>All avatar items are virtual and have no real-world value</li>
+        <li>Item designs are for in-game use only</li>
+        <li>We reserve the right to modify or remove any items at any time</li>
+        <li>You may not copy, reproduce, or distribute our designs outside the game</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>3. User Conduct</h2>
+      <p>When playing ATLAS, you agree to:</p>
+      <ul>
+        <li>Follow all Roblox Terms of Service and Community Standards</li>
+        <li>Not exploit bugs, glitches, or cheats</li>
+        <li>Not harass, bully, or discriminate against other players</li>
+        <li>Not use inappropriate language or display offensive content</li>
+        <li>Not impersonate staff members or other players</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>4. Virtual Items & Purchases</h2>
+      <p>Any in-game purchases or virtual items are subject to Roblox's policies:</p>
+      <ul>
+        <li>All purchases are final and non-refundable</li>
+        <li>Virtual items cannot be exchanged for real currency</li>
+        <li>We are not responsible for lost items due to account issues</li>
+      </ul>
+      <div class="highlight-box">
+        <p>Important: Never share your account credentials with anyone. We will never ask for your password.</p>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>5. Privacy & Data</h2>
+      <p>We respect your privacy and comply with Roblox's data policies:</p>
+      <ul>
+        <li>We do not collect personal information beyond what Roblox provides</li>
+        <li>Game data is stored securely on Roblox servers</li>
+        <li>We do not share your information with third parties</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>6. Intellectual Property</h2>
+      <p>All game content, including but not limited to:</p>
+      <ul>
+        <li>Avatar item designs and textures</li>
+        <li>Game mechanics and systems</li>
+        <li>Visual assets and graphics</li>
+        <li>Scripts and code</li>
+      </ul>
+      <p>Are the property of ATLAS creators and protected by intellectual property laws.</p>
+    </div>
+    
+    <div class="section">
+      <h2>7. Prohibited Activities</h2>
+      <p>The following activities are strictly prohibited:</p>
+      <ul>
+        <li>Using exploits, hacks, or third-party tools</li>
+        <li>Attempting to disrupt game servers or services</li>
+        <li>Creating multiple accounts to circumvent bans</li>
+        <li>Selling or trading accounts</li>
+        <li>Engaging in real-money trading of virtual items</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>8. Updates & Changes</h2>
+      <p>We reserve the right to update these Terms of Service at any time. Changes will be effective immediately upon posting. Continued use of the game constitutes acceptance of any modifications.</p>
+    </div>
+    
+    <div class="section">
+      <h2>9. Contact Information</h2>
+      <p>If you have questions about these Terms of Service, please contact us through:</p>
+      <ul>
+        <li>Roblox group messages</li>
+        <li>Our official social media channels</li>
+        <li>In-game support systems</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>10. Agreement</h2>
+      <p>By playing ATLAS, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>ATLAS © 2026 — Made by Eight25bro</p>
+  </div>
+</div>
+
 </body>
 </html>
